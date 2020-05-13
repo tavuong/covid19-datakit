@@ -34,26 +34,20 @@ def cal_yr(ys,y, faktor, Tau, gesund) :
     T = Tau
     f = faktor
     py2 = 0.0
+    gesund = 0
+# linear Model                
     
     for i in  y:       
         if k >T: 
             if (y[k-T-1] != 0):
-# linear                f = y[k-1] / y[k-T-1]
-# exponent model
-                py2 = np.log10(y[k-1]) 
-                py2 = py2 - np.log10(y[k-T-1])
-                py2 = 10**py2
-                f = py2
-                print ("R-Factor:" + str(f) + "--" + str(y[k]) + "\r")
+                f = y[k-1] / y[k-T-1]
             else:
-                f = faktor
-            py2 = y[k-1]*f - y[k-T]*gesund
-#            print (f, y[k] , py2)
+                f = 1
+
         else:
-            f =1
-            py2 = y [k-1]*f 
+            f =0
         
-        ys[k] = py2 
+        ys[k] = y[k]*(f - gesund)
 #        print (f, y[k] , py2, ys [k])
         k= k+1    
     return{}
@@ -92,10 +86,35 @@ def cal_s(ys,y, faktor, Tau) :
         k= k+1    
     return{}
 
+def cal_rf0(ys,y, faktor, Tau, gesund) :
+# model: variabel faktor (t>Tau) + gesund faktor
+
+    k = 0
+    T = Tau
+    f = faktor
+    py2 = 0.0
+    gesund = 0
+# linear Model                
+    
+    for i in  y:       
+        if k >T: 
+            if (y[k-T-1] != 0):
+                f = y[k-1] / y[k-T-1]
+            else:
+                f = 1 
+
+        else:
+            f =0
+        
+        ys[k] = f - gesund
+#        print (f, y[k] , py2, ys [k])
+        k= k+1    
+    return{}
 
 def cal_rf1(yr,y, faktor, Tau, gesund) :
 # model: time delay and relative faktor
 # exponential model
+# in developping
     k = 0
     T = Tau
     f = faktor # f is generated, f=1 by Tau =0 
@@ -108,17 +127,19 @@ def cal_rf1(yr,y, faktor, Tau, gesund) :
 # linear model
 #                f = y[k-1] / y[k-T-1]
 # exponent model
-                py2 = np.log10(y[k]) 
-                py2 = py2 - np.log10(y[k-T])
-                py2 = 10**py2
-                f = py2
-                print ("R-Factor:" + str(f) + "--" + str(y[k]) + "\r")
+                if (y[k] == 0):
+                    f=0
+                else:
+                    py2 = np.log10(y[k]) - np.log10(y[k-T])
+                    py2 = 10**py2
+                    f = py2
+#                print ("R-Factor:" + str(f) + "--" + str(y[k]) + "\r")
             else:
-                f = faktor
+                f = 0
         else:
-            f = faktor
+            f = 0
             
-        yr[k] = f # - gesund       
+        yr[k] = f # - gesund     
         
        
 #        print ("R-Factor:" + str(f) + "\r")

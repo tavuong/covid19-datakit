@@ -4,6 +4,7 @@ from datetime import datetime
 from datetime import date
 import csv
 from lib.tavuong_visual import *
+from lib.user_visual import *
 
 def main():
 
@@ -15,9 +16,10 @@ def main():
     print("| author: Dr.-Ing. The Anh Vuong       |")
     print("---------------------------------------\n")
     print("| Demo Visualisation                   |")
-    
-# CSV-Data reading
+
+# covid19-data-kit: CSV Data reading
 # source https://ourworldindata.org/coronavirus-source-data
+# download put to ./data, eg. new_casesC.csv
 
     sname =""
     sname = input ('Case data file:')
@@ -71,25 +73,35 @@ def main():
                 index = index + 1
 #        print (x)
 #        print (y)    
+# covid19-data-kit: Visualization 
 # Mode select
     print("| Visualization mode                   |")
+    print("| me : user demonstration              |")
     print("| ac : actual case                     |")
-    print("| ca : actual case (Tau,r)             |")
-    print("| sr : summe (Tau,r)                   |")
+    print("| sr : summe of cases                  |")
+    print("| t2 : test print                      |")
     
     mode  = input('What is your calculate-mode? ')
     print ('mode: ' + mode) 
 
-# Visualization mode
-    if (mode in 'te'):
-        corona_plot_test(x,y) 
+#    if (mode in 'te'):
+#        corona_plot_test(x,y) 
 
+    fig, ax = plt.subplots()
+    # my_visual Block
+    if (mode in 'me'): 
+        my_collection_1(x,y,y1,y2,namecountry)
+    
     if (mode in 'ac'): 
-        block_case_ac(x,y,y1,y2,namecountry)
-    if (mode in 'ca'): 
-        block_case_ca(x,y,y1,y2,namecountry)
+        tavuong_collection_ac(x,y,y1,y2,namecountry)
     if (mode in 'sr'): 
-        block_case_sr(x,y,y1,y2,namecountry)
+        tavuong_collection_sr(x,y,y1,y2,namecountry)
+    
+
+    if (mode in 't2'):
+        kit_plot_test2(x,y) 
+
+    show_curve(ax,namecountry)
 
     
 main()
