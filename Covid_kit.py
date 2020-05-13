@@ -24,7 +24,7 @@ def main():
     sname = input ('Case data file:')
     if sname =="":
 #        sname = 'new_cases.csv'
-        sname = '.\/data\/new_casesC.csv'
+        sname = './data/new_casesC.csv'
     with open(sname,'r') as csvfile:
         x = [] # csv 0. Colum
         y = [] # csv 1. Colum
