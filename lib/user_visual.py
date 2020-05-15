@@ -1,6 +1,7 @@
 # user_visual.py
 # Bibliotkek für Data Visualizing
 # Author : Dr.-Ing. The Anh Vuong
+#          + your Name
 # Basis Structur
 # my_collection_x(x,y,y1,y2,namecountry)
 #   x [] datum
@@ -10,13 +11,13 @@
 #   Name of Choice Colume 
 
 import matplotlib.pyplot as plt
-#import matplotlib.dates
-#from datetime import datetime
-#from datetime import date
+
 from lib.tavuong_model import *
+from lib.user_model import *
 
 def my_collection_1(x,y,y1,y2,namecountry):
 # --My Block_case Visual ---------------------------------------   
+#   Model : my_model_1(y2,y,1,0) : accumulate of cases 
 #   faktor = R -Faktor Fix or realtiv
 #   Tau = delay time
 #   gesund = recovery faktor
@@ -26,9 +27,8 @@ def my_collection_1(x,y,y1,y2,namecountry):
 #   plot y(x) = x(t)
     plt.bar(x,y, color ="green", label='infection (t)')
 
-    cal_s(y2,y,1,0)
-#    plt.plot(x,y2, label='Sum(0)')
-    plt.plot(x,y2, label='Sum infected')
+    my_model_1(y2,y,1,0)
+    plt.plot(x,y2, label='accumulated  infected')
 
     return{}
 

@@ -76,22 +76,23 @@ def main():
 # covid19-data-kit: Visualization 
 # Mode select
     print("| Visualization mode                   |")
-    print("| me : user demonstration              |")
     print("| ac : actual case                     |")
-    print("| sr : summe of cases                  |")
-    print("| t2 : test print                      |")
-    
-    mode  = input('What is your calculate-mode? ')
-    print ('mode: ' + mode) 
+    print("| sr : accumulate of cases             |")
+    print("| me : my model                        |")
+    print("| t2 : test plot                       |")
+  
+    mode  = input('What is your calculate-model? ')
+    print ('model: ' + mode) 
 
 #    if (mode in 'te'):
 #        corona_plot_test(x,y) 
 
     fig, ax = plt.subplots()
-    # my_visual Block
+# my_Model
     if (mode in 'me'): 
         my_collection_1(x,y,y1,y2,namecountry)
-    
+
+# Example Model    
     if (mode in 'ac'): 
         tavuong_collection_ac(x,y,y1,y2,namecountry)
     if (mode in 'sr'): 
