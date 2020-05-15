@@ -15,6 +15,9 @@ from datetime import datetime
 from datetime import date
 from lib.tavuong_model import *
 
+# ------------------------------------------   
+# PLOT Models 
+
 def tavuong_collection_ac(x,y,y1,y2,namecountry):
 # ----Actualcase ----------------------------------
 #   x [] datum
@@ -39,7 +42,6 @@ def tavuong_collection_sr(x,y,y1,y2,namecountry):
     r=0 # dummy
 
     cal_s(y2,y,1,0)
-
 #    plt.plot(x,y2, label='Sum(0)')
     plt.bar(x,y2, label='Sum infected')
     
@@ -54,8 +56,24 @@ def tavuong_collection_sr(x,y,y1,y2,namecountry):
     
     return{}
 
+def tavuong_collection_rf1(x,y,y1,y2,namecountry):
+# ------------------------------------------   
+#   faktor = R -Faktor Fix or realtiv
+#   Tau = delay time
+#   gesund = recovery faktor
 
-# PLOT TEST
+    r=0 # dummy
+
+    
+    cal_rf0(y2,y,r,7,0)    
+    plt.plot(x,y2,color ="blue",label='Linear Model: R-Faktor')
+    
+    cal_rf1(y2,y,r,7,0)    
+    plt.bar(x,y2,color ="red",label='Exponent Model: R-Faktor')
+    
+    
+    return{}
+
 def kit_plot_test2(t,x):
     
     plt.plot(t,x, color ="green", label="test")
@@ -63,7 +81,28 @@ def kit_plot_test2(t,x):
     plt.scatter(t,x, color ="red", label="test")
     return{}
 
+# ------------------------------------------   
+# PLOT Multi Country 
+def tavuong_multi_ac(t,x,color_text, label_text):
+# Multicall    
+    plt.plot(t,x, color =color_text, label=label_text)
+#    plt.bar(t,x, color ="blue", label="test")
+#    plt.scatter(t,x, color ="red", label="test")
+    return{}
 
+def tavuong_multi_s(x,y,y1,y2,color_text, label_text):
+#   faktor = R -Faktor Fix or realtiv
+#   Tau = delay time
+#   gesund = recovery faktor
+#   summing data
+
+    cal_s(y2,y,1,0)
+    plt.plot(x,y2,color =color_text, label=label_text)
+#    plt.bar(x,y2, label='Sum infected')    
+    return{}
+
+# ------------------------------------------   
+# PLOT Template 
 def show_curve(ax,namecountry):
 #    t = [date.fromisoformat('2016-01-01'), date.fromisoformat('2017-12-31')]
 #    x = [0,1]
@@ -81,10 +120,13 @@ def show_curve(ax,namecountry):
     plt.xlabel('date')
     plt.ylabel('cases / factor')
     plt.title('Visualization of Cases in ' + namecountry)
-    ax.text(0.95, -0.1, 'power by tavuong/covid19-data-kit - Dr.-Ing. The Anh Vuong',
+
+#   Credit for corona19-data-kit.  
+    ax.text(0.95, -0.1, 'powered by tavuong/covid19-data-kit - Dr.-Ing. The Anh Vuong',
         verticalalignment='bottom', horizontalalignment='right',
         transform=ax.transAxes,
         color='blue', fontsize=10)
+
     plt.show()
 
 # backup for plot development
