@@ -26,11 +26,17 @@ $ pip install mumpy
 $ python covid_kid_1.py
 
 Case data file: ./data/new_cases.csv or blank for default 
+
 | Visualization model                  |
+
 | ac : actual case                     |
+
 | sr : summe of cases                  |
+
 | me : my model                        |
+
 | t2 : test plot                       |
+
 What is your calculate-model? me
 
 # Status
