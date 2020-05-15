@@ -12,8 +12,11 @@ A development kit for Covid-Data Analysis and Visualization
 $ git clone https://github.com/tavuong/covid19-data-kit.git
 ## data prepare: 
 $ cd ~/covid-data-kit/
+
 copy csv.file in ./data 
+
 You could find [here [Data Sources](https://ourworldindata.org/coronavirus-source-data)] or from other public source 
+
 ## lib install
 $ cd ~/covid-data-kit
 $ pip install matplotlib
