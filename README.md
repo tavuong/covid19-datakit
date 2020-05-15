@@ -25,7 +25,7 @@ $ pip install mumpy
 ## program covid_kid_1.py & dialog
 $ python covid_kid_1.py
 
-Case data file: ./data/new_cases.csv or blank for default 
+Case data file: ./data/new_cases.csv or ("return" for using default data for testing) 
 
 | Visualization model                  |
 
