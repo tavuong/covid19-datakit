@@ -3,7 +3,7 @@
 ## Description:
 A development kit for Covid-Data Analysis and Visualization
 ## Features:
-- Program: covid_kit_1.py
+- Program: covid_kit_app1.py, covid_kit_app2.py
 - Input: data source and Parameter
 - Modeling:     ./lib/user_model.py ./lib/tavuong_model.py (default)
 - Visualizing : .lib/user_visual.py ./lib/tavuong_model.py (default)
@@ -27,7 +27,7 @@ $ cd ~/covid-data-kit/
 - copy csv-file to ./data (e.g. new_cases.csv) 
 - You could find [here Data Sources](https://ourworldindata.org/coronavirus-source-data) or from other public source 
 
-## covid_kit_App1.py start & dialog
+## covid_kit_app1.py start & dialog
 covid_app1.py : app for visualizing of data cases (csv-files in ./data). It could be using also to develop your own presentation.  
 
 $ cd ~/covid-data-kit
@@ -40,10 +40,10 @@ $ python covid_kit_1.py
 
 Curve will be shown!
 
-## covid_kit_Ap2.py start & dialog
+## covid_kit_app2.py start & dialog
 In development
 
-Project : Covid-data-kit
+Project : covid19-data-kit
 ----
 Author: Dr.-Ing. The Anh Vuong 
 
