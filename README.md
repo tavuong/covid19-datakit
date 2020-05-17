@@ -1,16 +1,17 @@
 # covid19-data-kit
 [![N|](https://vuongblog.files.wordpress.com/2020/05/git_pt_vuong60.png)](https://vuongblog.wordpress.com)
+
 ## Description:
-A development kit for Covid-Data Analysis and Visualization
+- Development kit for Covid-Data Analysis and Visualization.
+- User could develop his owner model in user_model.py
+- User could develop his owner presentation in user_visual.py 
+- All analysis methods in tavuong_model.py are models for reasearch, could giving non-real statements.
+
 ## Features:
 - Program: covid19-kit-app1.py,covid19-kit-app2.py
 - Input: data source and Parameter
 - Modeling:     ./lib/user_model.py ./lib/tavuong_model.py (default)
 - Visualizing : .lib/user_visual.py ./lib/tavuong_model.py (default)
-
-## Status
-- all methods in tavuong_lib.py, user_lib.py  are  models could giving non-real statements.
-- This Project is in development
 
 # Install
 ## download
