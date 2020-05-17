@@ -1,5 +1,5 @@
 # covid-data-kit
-[![N|](https://vuongblog.files.wordpress.com/2020/05/git_power1_vuong-1.png)](https://vuongblog.wordpress.com)
+[![N|](https://vuongblog.files.wordpress.com/2020/05/git_pt_vuong60.png)](https://vuongblog.wordpress.com)
 ## Description:
 A development kit for Covid-Data Analysis and Visualization
 ## Features:
