@@ -37,7 +37,7 @@ $ python covid19-kit-app1.py
 
 - Case data file: ./data/new_cases.csv or ("return" for using default data for testing) 
 - Country: Name_of Country in list
-- What is your calculate-model? me (my model / tavuong_model,py: ac,sr,t2)
+- What is your calculate-model? me (or: ac, sr, t2 from tavuong_visual.py)
 
 Curve will be shown!
 
