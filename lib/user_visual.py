@@ -24,11 +24,16 @@ def my_collection_1(x,y,y1,y2,namecountry):
 
     r=0 # dummy
 
-#   plot y(x) = x(t)
-    plt.bar(x,y, color ="green", label='infection (t)')
+#  using tavuong_model y1(y(x))
+    r=0 # dummy
+    cal_y(y1,y,1,0)    
+    plt.bar(x,y1, label='tavuong_model:infection (t)')
 
-    my_model_1(y2,y,1,0)
-    plt.plot(x,y2, label='accumulated  infected')
+#  using user_model y1(y(x))
+    factor = 0.1
+    Tau = 0
+    my_model_1(y2,y,factor,Tau)
+    plt.plot(x,y2, label='user_model: accumulated /10')
 
     return{}
 

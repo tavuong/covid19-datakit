@@ -26,8 +26,18 @@ def tavuong_collection_ac(x,y,y1,y2,namecountry):
 #   y2[] buffer/ Reserved
 #   namecontry = Choice Colume 
 
+#  direct plot Y(x)
+#    plt.bar(x,y, color ="green", label='infection (t)')
+#  using tavuong_model y1(y(x))
     r=0 # dummy
-    plt.bar(x,y, color ="green", label='infection (t)')
+    cal_y(y1,y,1,0)    
+    plt.bar(x,y1, label='infection (t)')
+    
+    cal_yf(y1,y,2,7,0)    
+    plt.plot(x,y1, label='estimated (2f,7)' )
+
+    cal_yr(y1,y,r,7,0)    
+    plt.plot(x,y1, label=' estimate (r,7)')
 
     return{}
 
@@ -41,16 +51,16 @@ def tavuong_collection_sr(x,y,y1,y2,namecountry):
 
     r=0 # dummy
 
-    cal_s(y2,y,1,0)
+    cal_s(y2,y,1,0,0)
 #    plt.plot(x,y2, label='Sum(0)')
     plt.bar(x,y2, label='Sum infected')
     
     cal_yr(y1,y,r,7,0)    
-    cal_s(y2,y1,1,0)
+    cal_s(y2,y1,1,0,0)
     plt.plot(x,y2, label='Sum estimate (r,7)')
     
     cal_yf(y1,y,2,7,0)    
-    cal_s(y2,y1,1,0)
+    cal_s(y2,y1,1,0,0)
     plt.plot(x,y2, label='Sum estimated (2f,7)' )
     
     
@@ -96,7 +106,7 @@ def tavuong_multi_s(x,y,y1,y2,color_text, label_text):
 #   gesund = recovery faktor
 #   summing data
 
-    cal_s(y2,y,1,0)
+    cal_s(y2,y,1,0,0)
     plt.plot(x,y2,color =color_text, label=label_text)
 #    plt.bar(x,y2, label='Sum infected')    
     return{}
@@ -117,18 +127,22 @@ def show_curve(ax,namecountry):
     
     plt.setp(ax.get_xticklabels(), rotation=0, ha="center")
     ax.legend()    
-    plt.xlabel('date')
+#    plt.xlabel('date')
     plt.ylabel('cases / factor')
     plt.title('Visualization of Cases in ' + namecountry)
 
 #   Credit for corona19-data-kit.  
-    ax.text(0.95, -0.1, 'powered by tavuong/covid19-data-kit - Dr.-Ing. The Anh Vuong',
+    ax.text(1.0, -0.15, 'powered by covid19-data-kit-Dr.-Ing. The Anh Vuong',
         verticalalignment='bottom', horizontalalignment='right',
         transform=ax.transAxes,
         color='blue', fontsize=10)
 
     plt.show()
+#    output for TEXMUX
+#    out_png = 'covid19_kit_output.png'
+#    plt.savefig(out_png, dpi=150)
 
+# ------------------------------------------   
 # backup for plot development
 def corona_plot_test(t,x):
     
@@ -149,6 +163,10 @@ def corona_plot_test(t,x):
     plt.setp(ax.get_xticklabels(), rotation=0, ha="center")
 
     plt.show()
+#    output for TEXMUX
+#    out_png = 'covid19_kit_output.png'
+#    plt.savefig(out_png, dpi=150)
+
     return{}
 
 

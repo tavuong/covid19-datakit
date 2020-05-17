@@ -22,7 +22,7 @@ def my_model_1(ys,y, faktor, Tau) :
     ys[0] = 0
     py2 = 0
     for i in  y:
-        py2 = y[k] + py2
+        py2 = y[k]*faktor + py2
         ys[k] = py2       
  #       print (y[k] , py2, ys [k])
         k= k+1    

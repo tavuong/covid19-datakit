@@ -97,8 +97,10 @@ def main():
         tavuong_collection_ac(x,y,y1,y2,namecountry)
     if (mode in 'sr'): 
         tavuong_collection_sr(x,y,y1,y2,namecountry)
-    
-
+# in development     
+    if (mode in 'rf'): 
+        tavuong_collection_rf1(x,y,y1,y2,namecountry)
+# test     
     if (mode in 't2'):
         kit_plot_test2(x,y) 
 

@@ -39,15 +39,18 @@ def cal_yr(ys,y, faktor, Tau, gesund) :
     
     for i in  y:       
         if k >T: 
-            if (y[k-T-1] != 0):
-                f = y[k-1] / y[k-T-1]
+            if (y[k-T] != 0):
+                f = y[k-1] / y[k-T]
             else:
-                f = 1
+                f = 0
 
         else:
             f =0
         
-        ys[k] = y[k]*(f - gesund)
+        if (k!=0): 
+            ys[k] = y[k -1]*(f - gesund)
+        else: 
+            ys [k] = 0
 #        print (f, y[k] , py2, ys [k])
         k= k+1    
     return{}
@@ -57,28 +60,33 @@ def cal_yf(ys,y, faktor, Tau, gesund) :
 
     k = 0
     T = Tau     # Dummy
-    f = faktor  # Fix faktor
+#    f = faktor  # Fix faktor
     py2 = 0
     for i in  y:       
         if k >T: 
-            py2 = y[k-1]*f - y[k-T]*gesund
+            f = faktor
 #           print (f, y[k] , py2)
         else:
-            py2 = y [k] 
+            f = 0  
         
-        ys[k] = py2 
+        if (k!=0): 
+            ys[k] = y[k -1]*(f - gesund)
+        else: 
+            ys [k] = 0
 #        print (f, y[k] , py2, ys [k])
         k= k+1    
     return{}
 
-def cal_s(ys,y, faktor, Tau) :
+def cal_s(ys,y, faktor, Tau, gesund) :
 # model: summe y(k) ,  time delay and fix faktor
-
-    k = 0
-    T = Tau   # dummy
-    f = faktor # dummy
-    ys[0] = 0
+#   Dummy for smae Structture:
+#   Tau delay
+#   faktor multicator
+#   gesund reduction factor
+#    ys[0] = 0
     py2 = 0
+    k = 0
+
     for i in  y:
         py2 = y[k] + py2
         ys[k] = py2       
