@@ -24,11 +24,15 @@ $ pip install mumpy
 ## data prepare: 
 $ cd ~/covid-data-kit/
 
-- copy csv.file in ./data 
-- You could find [here [Data Sources](https://ourworldindata.org/coronavirus-source-data)] or from other public source 
+- copy csv-file to ./data (e.g. new_cases.csv) 
+- You could find [here Data Sources](https://ourworldindata.org/coronavirus-source-data) or from other public source 
 
-## program covid_kid_App1.py & dialog
-$ python covid_kid_1.py
+## covid_kit_App1.py start & dialog
+covid_app1.py : app for visualizing of data cases (csv-files in ./data). It could be using also to develop your own presentation.  
+
+$ cd ~/covid-data-kit
+
+$ python covid_kit_1.py
 
 - Case data file: ./data/new_cases.csv or ("return" for using default data for testing) 
 - Country: Name_of Country in list
@@ -36,7 +40,7 @@ $ python covid_kid_1.py
 
 Curve will be shown!
 
-## program covid_kid_Ap2.py & dialog
+## covid_kit_Ap2.py start & dialog
 In development
 
 Project : Covid-data-kit
