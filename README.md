@@ -1,5 +1,5 @@
 # covid-data-kit
-
+[![N|](https://vuongblog.files.wordpress.com/2020/05/git_power1_vuong-1.png)](https://vuongblog.wordpress.com)
 ## Description:
 A development kit for Covid-Data Analysis and Visualization
 ## Features:
@@ -8,45 +8,41 @@ A development kit for Covid-Data Analysis and Visualization
 - Modeling:     ./lib/user_model.py ./lib/tavuong_model.py (default)
 - Visualizing : .lib/user_visual.py ./lib/tavuong_model.py (default)
 
-## install
+## Status
+- all methods in tavuong_lib.py, user_lib.py  are  models could giving non-real statements.
+- This Project is in development
+
+# Install
+## download
 $ git clone https://github.com/tavuong/covid19-data-kit.git
-## data prepare: 
-$ cd ~/covid-data-kit/
 
-copy csv.file in ./data 
-
-You could find [here [Data Sources](https://ourworldindata.org/coronavirus-source-data)] or from other public source 
-
-## lib install
+## lib install (for first time)
 $ cd ~/covid-data-kit
 $ pip install matplotlib
 $ pip install mumpy
 
-## program covid_kid_1.py & dialog
+## data prepare: 
+$ cd ~/covid-data-kit/
+
+- copy csv.file in ./data 
+- You could find [here [Data Sources](https://ourworldindata.org/coronavirus-source-data)] or from other public source 
+
+## program covid_kid_App1.py & dialog
 $ python covid_kid_1.py
 
-Case data file: ./data/new_cases.csv or ("return" for using default data for testing) 
+- Case data file: ./data/new_cases.csv or ("return" for using default data for testing) 
+- Country: Name_of Country in list
+- What is your calculate-model? me (my model / tavuong_model,py: ac,sr,t2)
 
-| Visualization model                  |
+Curve will be shown!
 
-| ac : actual case                     |
-
-| sr : summe of cases                  |
-
-| me : my model                        |
-
-| t2 : test plot                       |
-
-What is your calculate-model? me
-
-# Status
-- all methods in tavuong_lib.py, user_lib.py  are  models could giving non-real statements.
-- This Project is in development
+## program covid_kid_Ap2.py & dialog
+In development
 
 Project : Covid-data-kit
 ----
-Author: Dr.-Ing. The Anh Vuong [![N|](https://vuongblog.files.wordpress.com/2020/05/vuong_thumb.png)](https://vuongblog.wordpress.com)
+Author: Dr.-Ing. The Anh Vuong 
 
-Copyright (c) 2020 Dr.-Ing. The Anh Vuong (tavuong)
+Copyright (c) 2020 Dr.-Ing. The Anh Vuong , Germany
 
 License: MIT
