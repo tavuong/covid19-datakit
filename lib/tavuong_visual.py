@@ -33,11 +33,11 @@ def tavuong_collection_ac(x,y,y1,y2,namecountry):
     cal_y(y1,y,1,0)    
     plt.bar(x,y1, label='infection (t)')
     
-    cal_yf(y1,y,2,7,0)    
-    plt.plot(x,y1, label='estimated (2f,7)' )
-
-    cal_yr(y1,y,r,7,0)    
-    plt.plot(x,y1, label=' estimate (r,7)')
+#    cal_yf(y1,y,2,7,0)    
+#    plt.plot(x,y1, label='estimated (2f,7)' )
+#
+#    cal_yr(y1,y,r,7,0)    
+#    plt.plot(x,y1, label=' estimate (r,7)')
 
     return{}
 
@@ -55,13 +55,13 @@ def tavuong_collection_sr(x,y,y1,y2,namecountry):
 #    plt.plot(x,y2, label='Sum(0)')
     plt.bar(x,y2, label='Sum infected')
     
-    cal_yr(y1,y,r,7,0)    
-    cal_s(y2,y1,1,0,0)
-    plt.plot(x,y2, label='Sum estimate (r,7)')
+#    cal_yr(y1,y,r,7,0)    
+#    cal_s(y2,y1,1,0,0)
+#    plt.plot(x,y2, label='Sum estimate (r,7)')
     
-    cal_yf(y1,y,2,7,0)    
-    cal_s(y2,y1,1,0,0)
-    plt.plot(x,y2, label='Sum estimated (2f,7)' )
+#    cal_yf(y1,y,2,7,0)    
+#    cal_s(y2,y1,1,0,0)
+#    plt.plot(x,y2, label='Sum estimated (2f,7)' )
     
     
     return{}
