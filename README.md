@@ -43,7 +43,7 @@ Curve will be shown!
 ## covid_kit_app2.py start & dialog
 In development
 
-Project : covid19-data-kit
+Project : covid-data-kit
 ----
 Author: Dr.-Ing. The Anh Vuong 
 
