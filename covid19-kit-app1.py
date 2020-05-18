@@ -75,14 +75,19 @@ def main():
 #        print (y)    
 # covid19-data-kit: Visualization 
 # Mode select
-    print("| Visualization mode                   |")
-    print("| ac : actual case                     |")
-    print("| sr : accumulate of cases             |")
-    print("| me : my model                        |")
-    print("| t2 : test plot                       |")
+    print("| Visualization mode                     |")
+    print("| ac : actual case                       |")
+    print("| sr : accumulate of cases               |")
+    print("| gc : actual and recovered estimate     |")
+    print("| gs : accumulate incl. Recovered factor |")
+    print("| me : my model                          |")
+    print("| t2 : test plot                         |")
   
     mode  = input('What is your calculate-model? ')
     print ('model: ' + mode) 
+    gesund  = input('Recovered factor? ')
+    gesund = float(gesund)
+    print ('Recovered factor : ' + str(gesund)) 
 
 #    if (mode in 'te'):
 #        corona_plot_test(x,y) 
@@ -98,6 +103,12 @@ def main():
     if (mode in 'sr'): 
         tavuong_collection_sr(x,y,y1,y2,namecountry)
 # in development     
+    if (mode in 'gc'):
+        gesund = 0.8 
+        tavuong_collection_gc(x,y,y1,y2,gesund,namecountry)
+    if (mode in 'gs'):
+#        gesund = 0.8 
+        tavuong_collection_gs(x,y,y1,y2,gesund,namecountry)
     if (mode in 'rf'): 
         tavuong_collection_rf1(x,y,y1,y2,namecountry)
 # test     

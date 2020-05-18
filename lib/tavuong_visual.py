@@ -17,6 +17,58 @@ from lib.tavuong_model import *
 
 # ------------------------------------------   
 # PLOT Models 
+def tavuong_collection_gc(x,y,y1,y2,gesund,namecountry):
+# ----Actualcase ----------------------------------
+#   x [] datum
+#   y [] case Data 
+#   y1[] buffer/ Reserved
+#   y2[] buffer/ Reserved
+#   namecontry = Choice Colume 
+
+#  direct plot Y(x)
+#    plt.bar(x,y, color ="green", label='infection (t)')
+#  using tavuong_model y1(y(x))
+    r=0 # dummy
+    cal_y(y1,y,1,0)    
+    plt.bar(x,y1, color="blue", label='actual cases')
+# gesund = 0    
+#    cal_yf(y1,y,2,7,0)    
+#    plt.plot(x,y1, label='estimated (2f,7,0)' )
+
+    cal_yf(y1,y,2,7,gesund)    
+    plt.scatter(x,y1, color="red", label='estimate inf+recovered' )
+
+    cal_yg(y1,y,0,14,gesund)    
+    plt.plot(x,y1, color="green", label=' estimated recovered')
+
+    return{}
+def tavuong_collection_gs(x,y,y1,y2,gesund,namecountry):
+# ----Actualcase ----------------------------------
+#   x [] datum
+#   y [] case Data 
+#   y1[] buffer/ Reserved
+#   y2[] buffer/ Reserved
+#   namecontry = Choice Colume 
+
+#  direct plot Y(x)
+#    plt.bar(x,y, color ="green", label='infection (t)')
+#  using tavuong_model y1(y(x))
+    r=0 # dummy
+    cal_s(y1,y,1,0,0)    
+    plt.plot(x,y1, label='Summe infection')
+# gesund = 0    
+#    cal_yf(y1,y,2,7,0)
+#    cal_s(y2,y1,1,0,0)    
+#    plt.plot(x,y2, label='estimated (2f,7,0)' )
+
+    cal_sig(y1,y,0,14,gesund)    
+    plt.plot(x,y1, label='Summe Inf. estimated' )
+
+    cal_yg(y1,y,0,14,gesund)
+    cal_s(y2,y1,1,0,0)    
+    plt.plot(x,y2, label='summe recovered estimate')
+
+    return{}
 
 def tavuong_collection_ac(x,y,y1,y2,namecountry):
 # ----Actualcase ----------------------------------
@@ -132,7 +184,7 @@ def show_curve(ax,namecountry):
     plt.title('Visualization of Cases in ' + namecountry)
 
 #   Credit for corona19-data-kit.  
-    ax.text(1.0, -0.15, 'powered by covid19-data-kit-Dr.-Ing. The Anh Vuong',
+    ax.text(1.0, -0.1, 'powered by covid19-data-kit-Dr.-Ing. The Anh Vuong',
         verticalalignment='bottom', horizontalalignment='right',
         transform=ax.transAxes,
         color='blue', fontsize=10)

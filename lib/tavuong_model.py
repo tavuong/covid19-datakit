@@ -34,7 +34,7 @@ def cal_yr(ys,y, faktor, Tau, gesund) :
     T = Tau
     f = faktor
     py2 = 0.0
-    gesund = 0
+#    gesund = 0
 # linear Model                
     
     for i in  y:       
@@ -48,7 +48,7 @@ def cal_yr(ys,y, faktor, Tau, gesund) :
             f =0
         
         if (k!=0): 
-            ys[k] = y[k -1]*(f - gesund)
+            ys[k] = y[k -1]*(f-gesund)
         else: 
             ys [k] = 0
 #        print (f, y[k] , py2, ys [k])
@@ -70,10 +70,47 @@ def cal_yf(ys,y, faktor, Tau, gesund) :
             f = 0  
         
         if (k!=0): 
-            ys[k] = y[k -1]*(f - gesund)
+            ys[k] = y[k -1]*(f-gesund)
         else: 
             ys [k] = 0
 #        print (f, y[k] , py2, ys [k])
+        k= k+1    
+    return{}
+
+def cal_yg(yg,y, faktor, Tau, gesund) :
+# model: gesund / immun curve calculate
+
+    k = 0
+    T = Tau     # Dummy
+#    f = faktor  # Fix faktor
+    py2 = 0
+    g = gesund
+    for i in  y:       
+        if (k ==0): 
+            yg [0]=0
+        else:
+            if k >T: 
+                yg[k] = y[k -T]*gesund
+#           print (f, y[k] , py2)
+            else:
+                yg[k] = 0  
+        
+#        print (f, y[k] , py2, ys [k])
+        k= k+1    
+    return{}
+def cal_sig(ys,y, faktor, Tau, gesund) :
+# model: Infection - gesund sume curve calculate
+    py2 = 0 #Infaktion part
+    py3 = 0 #Gesund part
+    k = 0
+    T = Tau
+    for i in  y:
+        py2 = y[k] + py2
+        if (y[k] > 0):
+            if (k>T):
+                py3 = y[k -T]*gesund + py3
+        ys[k] = py2 -py3
+ #       print (y[k] , py2, ys [k])
         k= k+1    
     return{}
 
