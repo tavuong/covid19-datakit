@@ -9,7 +9,7 @@ from lib.user_visual import *
 def main():
 
     print("---------------------------------------|")
-    print("| Covid19-data-kit                     |")
+    print("| Covid19-datakit                     |")
     print("| Tools for Development                |")
     print("| Data Visualiszation                  |")
     print("| Data Analysis                        |")
