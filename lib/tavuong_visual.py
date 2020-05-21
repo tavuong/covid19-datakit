@@ -17,7 +17,7 @@ from lib.tavuong_model import *
 
 # ------------------------------------------   
 # PLOT Models 
-def tavuong_collection_gc(x,y,y1,y2,gesund,namecountry):
+def tavuong_collection_gc(x,y,y1,y2,gesund):
 # ----Actualcase ----------------------------------
 #   x [] datum
 #   y [] case Data 
@@ -26,23 +26,20 @@ def tavuong_collection_gc(x,y,y1,y2,gesund,namecountry):
 #   namecontry = Choice Colume 
 
 #  direct plot Y(x)
-#    plt.bar(x,y, color ="green", label='infection (t)')
+#  plt.bar(x,y, color ="green", label='infection (t)')
 #  using tavuong_model y1(y(x))
-    r=0 # dummy
     cal_y(y1,y,1,0)    
-    plt.bar(x,y1, color="blue", label='actual cases')
-# gesund = 0    
-#    cal_yf(y1,y,2,7,0)    
-#    plt.plot(x,y1, label='estimated (2f,7,0)' )
+    plt.plot(x,y1, color="blue", label='actual cases')
 
-    cal_yf(y1,y,2,7,gesund)    
-    plt.scatter(x,y1, color="red", label='estimate inf+recovered' )
+    rprod= 2.5
+    cal_yf(y1,y,rprod,7,gesund)    
+    plt.plot(x,y1, color="red", label='fix Reprod + Recov. (estim.)' )
 
     cal_yg(y1,y,0,14,gesund)    
-    plt.plot(x,y1, color="green", label=' estimated recovered')
+    plt.plot(x,y1, color="green", label='Recov. (estim.)')
 
     return{}
-def tavuong_collection_gs(x,y,y1,y2,gesund,namecountry):
+def tavuong_collection_gs(x,y,y1,y2,gesund):
 # ----Actualcase ----------------------------------
 #   x [] datum
 #   y [] case Data 
@@ -55,22 +52,22 @@ def tavuong_collection_gs(x,y,y1,y2,gesund,namecountry):
 #  using tavuong_model y1(y(x))
     r=0 # dummy
     cal_s(y1,y,1,0,0)    
-    plt.plot(x,y1, label='Summe infection')
+    plt.plot(x,y1, label='Infection')
 # gesund = 0    
 #    cal_yf(y1,y,2,7,0)
 #    cal_s(y2,y1,1,0,0)    
 #    plt.plot(x,y2, label='estimated (2f,7,0)' )
 
     cal_sig(y1,y,0,14,gesund)    
-    plt.plot(x,y1, label='Summe Inf. estimated' )
+    plt.plot(x,y1, label='Inf. + Recov. (estim.)' )
 
     cal_yg(y1,y,0,14,gesund)
     cal_s(y2,y1,1,0,0)    
-    plt.plot(x,y2, label='summe recovered estimate')
+    plt.plot(x,y2, label='Recov. (estim.)')
 
     return{}
 
-def tavuong_collection_ac(x,y,y1,y2,namecountry):
+def tavuong_collection_ac(x,y,y1,y2):
 # ----Actualcase ----------------------------------
 #   x [] datum
 #   y [] case Data 
@@ -94,10 +91,8 @@ def tavuong_collection_ac(x,y,y1,y2,namecountry):
     return{}
 
 
-def tavuong_collection_sr(x,y,y1,y2,namecountry):
+def tavuong_collection_sr(x,y,y1,y2):
 # ------------------------------------------   
-#   faktor = R -Faktor Fix or realtiv
-#   Tau = delay time
 #   gesund = recovery faktor
 #   summing data
 
@@ -118,20 +113,27 @@ def tavuong_collection_sr(x,y,y1,y2,namecountry):
     
     return{}
 
-def tavuong_collection_rf1(x,y,y1,y2,namecountry):
+def tavuong_collection_rf1(x,y,y1,y2,gesund):
 # ------------------------------------------   
-#   faktor = R -Faktor Fix or realtiv
+#   IN DEVEKOPPING 
+#   recovered factor is  Fix or realtiv
 #   Tau = delay time
 #   gesund = recovery faktor
+#  
+#   normal Cases
+#    cal_y(y1,y,1,0)    
+#    plt.plot(x,y1, label='infection (t)')
 
-    r=0 # dummy
+#   recovered factor gesund is fix
+#   reproduction rprod is fix    
+    rprod = 2
+    cal_rf0(y2,y,rprod,7,gesund)    
+    plt.plot(x,y2,label='Recovered-Linear Model')
 
-    
-    cal_rf0(y2,y,r,7,0)    
-    plt.plot(x,y2,color ="blue",label='Linear Model: R-Faktor')
-    
-    cal_rf1(y2,y,r,7,0)    
-    plt.bar(x,y2,color ="red",label='Exponent Model: R-Faktor')
+#   recovered factor is  modeled
+
+    cal_rf1(y2,y,rprod,7,gesund)    
+    plt.plot(x,y2,label='Recovered-Exponet Model')
     
     
     return{}
@@ -165,7 +167,7 @@ def tavuong_multi_s(x,y,y1,y2,color_text, label_text):
 
 # ------------------------------------------   
 # PLOT Template 
-def show_curve(ax,namecountry):
+def show_curve(ax,sname,namecountry,picstore):
 #    t = [date.fromisoformat('2016-01-01'), date.fromisoformat('2017-12-31')]
 #    x = [0,1]
 #    print (t)
@@ -181,7 +183,7 @@ def show_curve(ax,namecountry):
     ax.legend()    
 #    plt.xlabel('date')
     plt.ylabel('cases / factor')
-    plt.title('Visualization of Cases in ' + namecountry)
+    plt.title('Visualization of '+ sname +':'+ namecountry)
 
 #   Credit for corona19-data-kit.  
     ax.text(1.0, -0.1, 'powered by covid19-data-kit-Dr.-Ing. The Anh Vuong',
@@ -189,10 +191,14 @@ def show_curve(ax,namecountry):
         transform=ax.transAxes,
         color='blue', fontsize=10)
 
-    plt.show()
-#    output for TEXMUX
-#    out_png = 'covid19_kit_output.png'
-#    plt.savefig(out_png, dpi=150)
+#   JPEG-file output or for  TERMUX
+    out_png = 'covid19_kit_output.png'
+
+    if (picstore > 0):
+        out_png = 'covid19_kit_output.png'
+        plt.savefig(out_png, dpi=150)
+    else:
+        plt.show()
 
 # ------------------------------------------   
 # backup for plot development

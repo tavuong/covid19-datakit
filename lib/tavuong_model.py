@@ -56,7 +56,7 @@ def cal_yr(ys,y, faktor, Tau, gesund) :
     return{}
 
 def cal_yf(ys,y, faktor, Tau, gesund) :
-# model: fix faktor (t>Tau) + gesund faktor
+# model: fix reprod faktor (t>Tau) + gesund faktor
 
     k = 0
     T = Tau     # Dummy
@@ -82,7 +82,7 @@ def cal_yg(yg,y, faktor, Tau, gesund) :
 
     k = 0
     T = Tau     # Dummy
-#    f = faktor  # Fix faktor
+#   f = reprod-faktor  
     py2 = 0
     g = gesund
     for i in  y:       

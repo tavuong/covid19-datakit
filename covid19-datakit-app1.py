@@ -78,14 +78,18 @@ def main():
     print("| Visualization mode                     |")
     print("| ac : actual case                       |")
     print("| sr : accumulate of cases               |")
-    print("| gc : actual and recovered estimate     |")
-    print("| gs : accumulate incl. Recovered factor |")
+    print("| gc : actual incl. recovered estimate   |")
+    print("| gs : accumulate incl. recovered factor |")
     print("| me : my model                          |")
     print("| t2 : test plot                         |")
   
     mode  = input('What is your calculate-model? ')
-    print ('model: ' + mode) 
-    gesund  = input('Recovered factor? ')
+    print ('model: ' + mode)
+#    gesund ='0.0'
+    if ((mode == "ac") or mode == "sr"):
+        gesund ='0.0'
+    else:
+        gesund  = input('Recovered factor? ')
     gesund = float(gesund)
     print ('Recovered factor : ' + str(gesund)) 
 
@@ -97,25 +101,28 @@ def main():
     if (mode in 'me'): 
         my_collection_1(x,y,y1,y2,namecountry)
 
-# Example Model    
+# EXAMPLE MODEL    
     if (mode in 'ac'): 
-        tavuong_collection_ac(x,y,y1,y2,namecountry)
+        tavuong_collection_ac(x,y,y1,y2)
     if (mode in 'sr'): 
-        tavuong_collection_sr(x,y,y1,y2,namecountry)
-# in development     
+        tavuong_collection_sr(x,y,y1,y2)
+# IN DEVELOPING     
     if (mode in 'gc'):
-        gesund = 0.8 
-        tavuong_collection_gc(x,y,y1,y2,gesund,namecountry)
+#        gesund = 0.8 
+        tavuong_collection_gc(x,y,y1,y2,gesund)
     if (mode in 'gs'):
 #        gesund = 0.8 
-        tavuong_collection_gs(x,y,y1,y2,gesund,namecountry)
+        tavuong_collection_gs(x,y,y1,y2,gesund)
     if (mode in 'rf'): 
-        tavuong_collection_rf1(x,y,y1,y2,namecountry)
-# test     
+        tavuong_collection_rf1(x,y,y1,y2,gesund)
+# TEST     
     if (mode in 't2'):
         kit_plot_test2(x,y) 
+# JPEG OUTPUT: 
+#   picstore = 1
+    picstore = 0
 
-    show_curve(ax,namecountry)
+    show_curve(ax,sname,namecountry,picstore)
 
     
 main()
