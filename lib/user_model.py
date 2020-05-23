@@ -2,18 +2,19 @@
 # Bibliotkek für Data Visualizing
 # Author : Dr.-Ing. The Anh Vuong
 #        + your Name 
-# Basis Structur
+# Model Template
+# yc(x)  = function(y(x), reprod, Incubation Period, recovery rate)
+#          x = date time
+# implement  
+# yc[] = my_model_x(y[],faktor,Tau, gesund)
+#   faktor = R -Factor Fix or realtiv
+#   Tau = Incubation period
+#   gesund = recovery rate
 
 import math
 import numpy as np
 
-# my_model_1(ys,y,faktor, Tau)
-#   y [] input data /e.g. Case nummer
-#   ys [] out put data / e.g. of accoumulate cases  
-#   Faktor: ys [k] = summe Faktor * y[k]
-#   Tau : Delaytime / Incubazion time 
-
-def my_model_1(ys,y, faktor, Tau) :
+def my_model_1(ys,y, faktor, Tau, gesund) :
 # model: summe y(k) ,  time delay and fix faktor
 
     k = 0

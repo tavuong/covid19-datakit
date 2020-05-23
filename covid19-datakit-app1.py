@@ -12,22 +12,37 @@ def main(argv):
 # ARGUMENT Processing
     inputfile = ''
     outputfile = ''
+    country_in = ''
+    mode_in = ""
+    gesund_in =""    
     try:
-        opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
+        opts, args = getopt.getopt(argv,"hi:o:c:m:g:",["ifile=","ofile=","country=","mode=", "recover="])
     except getopt.GetoptError:
         print ('test.py -i <inputfile> -o <outputfile>')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print ('test.py -i <inputfile> -o <outputfile>')
+            print ('covid19-datakit \n -i <inputfile> -o <outputfile> \n -c country \n -o mode \n -g recover')
             sys.exit()
         elif opt in ("-i", "--ifile"):
             inputfile = arg
         elif opt in ("-o", "--ofile"):
             outputfile = arg
+        elif opt in ("-c", "--country"):
+            country_in = arg
+        elif opt in ("-m", "--mode"):
+            mode_in = arg
+        elif opt in ("-g", "--recover"):
+            gesund_in = arg
+
 #    print ('Input file is "', inputfile)
 #    print ('Output file is "', outputfile)
-#    print (argv)
+#    print ('Country is "', country_in, mode_in)
+    print ('Country is "', country_in, mode_in, gesund_in)
+
+    print (argv)
+
+#    if argv[0] != "": print (argv)
 # --------------------------------------
 # DIALOG
 # Data-files amd country ( colum Name) choise
@@ -66,7 +81,9 @@ def main(argv):
         print (fields)
 #   Country / Fieldname choise 
 #   icountry is colum-numer of Data        
-        namecountry = input("country:")
+        namecountry =""
+        namecountry = country_in
+        if namecountry == "": namecountry = input("country:")
         icountry = 0
         ncountry = ''
         for ncountry in fields:
@@ -100,22 +117,27 @@ def main(argv):
 # --------------------------------------
 # DIALOG
 # Mode select
-    print("| Visualization mode                     |")
-    print("| ac : actual case                       |")
-    print("| sr : accumulate of cases               |")
-    print("| gc : actual incl. recovered estimate   |")
-    print("| gs : accumulate incl. recovered factor |")
-    print("| me : my model                          |")
-    print("| t2 : test plot                         |")
-  
-    mode  = input('What is your calculate-model? ')
-    print ('model: ' + mode)
-#    gesund ='0.0'
+    mode =""
+    mode = mode_in
+    if mode == "": 
+        print("| Visualization models:                  |")
+        print("| ac : actual cases                      |")
+        print("| sr : daily sum of cases                |")
+        print("| gc : actual incl. estim. recovery rate |")
+        print("| gs : accum.  incl. estim. recovery rate|")
+        print("| me : my model                          |")
+        print("| t2 : test plot                         |")
+        mode  = input('What is your calculate-model? ')
+        print ('model: ' + mode)
+# RECOVERED SECLECT
+    gesund = 0.0
     if ((mode == "ac") or mode == "sr"):
         gesund ='0.0'
     else:
-        gesund  = input('Recovered factor? ')
-    gesund = float(gesund)
+        if (gesund_in == ""):
+            gesund_in  = input('Recovered factor? ')
+        gesund = float(str(gesund_in))
+    
     print ('Recovered factor : ' + str(gesund)) 
 
 #    if (mode in 'te'):
@@ -124,7 +146,7 @@ def main(argv):
     fig, ax = plt.subplots()
 # my_Model
     if (mode in 'me'): 
-        my_collection_1(x,y,y1,y2,namecountry)
+        my_collection_1(x,y,y1,y2,namecountry,gesund)
 
 # EXAMPLE MODEL    
     if (mode in 'ac'): 

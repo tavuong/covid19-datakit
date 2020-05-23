@@ -6,8 +6,8 @@
 # my_collection_x(x,y,y1,y2,namecountry)
 #   x [] datum
 #   y [] case Data 
-#   y1[] buffer/ Reserved
-#   y2[] buffer/ Reserved
+#   y1[] buffer/ Reserved for model calculation
+#   y2[] buffer/ Reserved for visual calculation
 #   Name of Choice Colume 
 
 import matplotlib.pyplot as plt
@@ -15,12 +15,12 @@ import matplotlib.pyplot as plt
 from lib.tavuong_model import *
 from lib.user_model import *
 
-def my_collection_1(x,y,y1,y2,namecountry):
+def my_collection_1(x,y,y1,y2,namecountry,gesund):
 # --My Block_case Visual ---------------------------------------   
 #   Model : my_model_1(y2,y,1,0) : accumulate of cases 
-#   faktor = R -Faktor Fix or realtiv
-#   Tau = delay time
-#   gesund = recovery faktor
+#   faktor = R -Factor Fix or realtiv
+#   Tau = Incubation period
+#   gesund = recovery rate
 
     r=0 # dummy
 
@@ -32,7 +32,7 @@ def my_collection_1(x,y,y1,y2,namecountry):
 #  using user_model y1(y(x))
     factor = 0.1
     Tau = 0
-    my_model_1(y2,y,factor,Tau)
+    my_model_1(y2,y,factor,Tau,gesund)
     plt.plot(x,y2, label='user_model: accumulated /10')
 
     return{}

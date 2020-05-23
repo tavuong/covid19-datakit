@@ -2,11 +2,13 @@
 # Model Bibliotkek für Data processing
 # Author : Dr.-Ing. The Anh Vuong
 # Basis Structur
-# cal_myfunction(yc,y, faktor, Tau)
-# yc[] = cal_myfunction(y[],factor,Tau, gesund)
-# factor = Productionsfaktor
-# Tau = Delay time/ Incubation
-# gesund = gesundfactor
+# yc(x)  = function(y(x), reprod, Incubation Period, recovery rate)
+#          x = date time
+# implement  
+# yc[] = cal_myfunction(y[],faktor,Tau, gesund)
+# factor = Reproduction factor
+# Tau = Incubation Period
+# gesund = recovery rate
 
 import math
 import numpy as np
@@ -117,9 +119,9 @@ def cal_sig(ys,y, faktor, Tau, gesund) :
 def cal_s(ys,y, faktor, Tau, gesund) :
 # model: summe y(k) ,  time delay and fix faktor
 #   Dummy for smae Structture:
-#   Tau delay
-#   faktor multicator
-#   gesund reduction factor
+#   faktor = R -Factor Fix or realtiv
+#   Tau = Incubation period
+#   gesund = recovery rate
 #    ys[0] = 0
     py2 = 0
     k = 0

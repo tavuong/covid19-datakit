@@ -116,9 +116,9 @@ def tavuong_collection_sr(x,y,y1,y2):
 def tavuong_collection_rf1(x,y,y1,y2,gesund):
 # ------------------------------------------   
 #   IN DEVEKOPPING 
-#   recovered factor is  Fix or realtiv
-#   Tau = delay time
-#   gesund = recovery faktor
+#   faktor = R -Factor Fix or realtiv
+#   Tau = Incubation period
+#   gesund = recovery rate
 #  
 #   normal Cases
 #    cal_y(y1,y,1,0)    
@@ -155,9 +155,9 @@ def tavuong_multi_ac(t,x,color_text, label_text):
     return{}
 
 def tavuong_multi_s(x,y,y1,y2,color_text, label_text):
-#   faktor = R -Faktor Fix or realtiv
-#   Tau = delay time
-#   gesund = recovery faktor
+#   faktor = R -Factor Fix or realtiv
+#   Tau = Incubation period
+#   gesund = recovery rate
 #   summing data
 
     cal_s(y2,y,1,0,0)
