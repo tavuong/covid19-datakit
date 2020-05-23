@@ -8,7 +8,7 @@
 #   y1[] buffer/ Reserved
 #   y2[] buffer/ Reserved
 #   Name of Choice Colume 
-
+import sys, getopt
 import matplotlib.pyplot as plt
 import matplotlib.dates
 from datetime import datetime
@@ -167,7 +167,7 @@ def tavuong_multi_s(x,y,y1,y2,color_text, label_text):
 
 # ------------------------------------------   
 # PLOT Template 
-def show_curve(ax,sname,namecountry,picstore):
+def show_curve(ax,sname,namecountry,outputfile):
 #    t = [date.fromisoformat('2016-01-01'), date.fromisoformat('2017-12-31')]
 #    x = [0,1]
 #    print (t)
@@ -182,23 +182,25 @@ def show_curve(ax,sname,namecountry,picstore):
     plt.setp(ax.get_xticklabels(), rotation=0, ha="center")
     ax.legend()    
 #    plt.xlabel('date')
-    plt.ylabel('cases / factor')
-    plt.title('Visualization of '+ sname +':'+ namecountry)
+    plt.ylabel('values')
+    plt.title('Data: '+ sname +' ['+ namecountry + ']')
 
 #   Credit for corona19-data-kit.  
-    ax.text(1.0, -0.1, 'powered by covid19-data-kit-Dr.-Ing. The Anh Vuong',
+    ax.text(1.0, -0.1, 'powered by Dr.-Ing. The Anh Vuong',
         verticalalignment='bottom', horizontalalignment='right',
         transform=ax.transAxes,
         color='blue', fontsize=10)
 
 #   JPEG-file output or for  TERMUX
-    out_png = 'covid19_kit_output.png'
-
-    if (picstore > 0):
-        out_png = 'covid19_kit_output.png'
+#    out_png = outputfile
+    out_png = ''
+    out_png = outputfile
+    if (out_png != ''):
         plt.savefig(out_png, dpi=150)
-    else:
-        plt.show()
+        print ('plot: ',out_png)
+
+    plt.show()
+
 
 # ------------------------------------------   
 # backup for plot development

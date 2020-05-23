@@ -1,3 +1,4 @@
+import sys, getopt
 import matplotlib.pyplot as plt
 import matplotlib.dates
 from datetime import datetime
@@ -6,8 +7,30 @@ import csv
 from lib.tavuong_visual import *
 from lib.user_visual import *
 
-def main():
-
+def main(argv):
+# --------------------------------------
+# ARGUMENT Processing
+    inputfile = ''
+    outputfile = ''
+    try:
+        opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
+    except getopt.GetoptError:
+        print ('test.py -i <inputfile> -o <outputfile>')
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print ('test.py -i <inputfile> -o <outputfile>')
+            sys.exit()
+        elif opt in ("-i", "--ifile"):
+            inputfile = arg
+        elif opt in ("-o", "--ofile"):
+            outputfile = arg
+#    print ('Input file is "', inputfile)
+#    print ('Output file is "', outputfile)
+#    print (argv)
+# --------------------------------------
+# DIALOG
+# Data-files amd country ( colum Name) choise
     print("---------------------------------------|")
     print("| Covid19-datakit                     |")
     print("| Tools for Development                |")
@@ -20,12 +43,13 @@ def main():
 # covid19-data-kit: CSV Data reading
 # source https://ourworldindata.org/coronavirus-source-data
 # download put to ./data, eg. new_casesC.csv
-
-    sname =""
-    sname = input ('Case data file:')
+    sname = inputfile
+    if sname == "":
+        sname = input ('Case data file:')
     if sname =="":
 #        sname = 'new_cases.csv'
         sname = './data/new_casesC.csv'
+
     with open(sname,'r') as csvfile:
         x = [] # csv 0. Colum
         y = [] # csv 1. Colum
@@ -40,7 +64,7 @@ def main():
         icountry = 0
         fields = next(plots) 
         print (fields)
-#   Country choise 
+#   Country / Fieldname choise 
 #   icountry is colum-numer of Data        
         namecountry = input("country:")
         icountry = 0
@@ -54,7 +78,7 @@ def main():
 
 
 # Not : y= " " must be change to 0 or delete Line
-# row 0 =Datum --> Lauf Index, row 1 y (n)   
+# row 0 =Datum --> X-axis , row 1 = y (x) ---> Y-axis  
 
 # First Data row will not be read        
         index=0
@@ -73,7 +97,8 @@ def main():
                 index = index + 1
 #        print (x)
 #        print (y)    
-# covid19-data-kit: Visualization 
+# --------------------------------------
+# DIALOG
 # Mode select
     print("| Visualization mode                     |")
     print("| ac : actual case                       |")
@@ -122,7 +147,8 @@ def main():
 #   picstore = 1
     picstore = 0
 
-    show_curve(ax,sname,namecountry,picstore)
+    show_curve(ax,sname,namecountry,outputfile)
 
     
-main()
+# main()
+main(sys.argv[1:])
