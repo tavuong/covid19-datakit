@@ -8,7 +8,7 @@
 - All analysis methods in tavuong_model.py are models for reasearch, could giving non-real statements.
 
 ## Features:
-- Program: covid19-datakit-app1.py,covid19-datakit-app2.py
+- Program: covid19-datakit.py : dashboard
 - Input: data source and Parameter
 - Modeling:     ./lib/user_model.py ./lib/tavuong_model.py (default)
 - Visualizing : .lib/user_visual.py ./lib/tavuong_model.py (default)
@@ -28,11 +28,11 @@ $ cd ~/covid19-datakit/
 - copy csv-file to ./data (e.g. new_cases.csv) 
 - You could find [here Data Sources](https://ourworldindata.org/coronavirus-source-data) or from other public source 
 
-## covid19-datakit-app1.py start & dialog
+## covid19-datakit.py start & dialog
 ### Direct to dialog
 ```sh
 $ cd ~/covid19-datakit
-$ python covid19-datakit-app1.py
+$ python covid19-datakit.py
 ```
 - Case data file: ./data/new_cases.csv or ("return" for using default data for testing) 
 - Country: Name_of Country in list
@@ -47,7 +47,7 @@ usage: covid19-datakit-app1.py -i <inputfile> -o <outputfile>
 - inputfile :  Data-csv-file
 - outputfile : png-file of plot  
   
-## covid19-datakit-app2.py start & dialog
+## covid19-datakit-app1.py, covid19-datakit-app2.pyg
 In development
 
 Project : covid19-datakit
