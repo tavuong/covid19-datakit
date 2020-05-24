@@ -47,7 +47,7 @@ def main(argv):
 # DIALOG
 # Data-files amd country ( colum Name) choise
     print("---------------------------------------|")
-    print("| Covid19-datakit                     |")
+    print("| Covid19-datakit                      |")
     print("| Tools for Development                |")
     print("| Data Visualiszation                  |")
     print("| Data Analysis                        |")
@@ -60,7 +60,7 @@ def main(argv):
 # download put to ./data, eg. new_casesC.csv
     sname = inputfile
     if sname == "":
-        sname = input ('Case data file:')
+        sname = input ('KIT > Case data file? ')
     if sname =="":
 #        sname = 'new_cases.csv'
         sname = './data/new_casesC.csv'
@@ -83,7 +83,7 @@ def main(argv):
 #   icountry is colum-numer of Data        
         namecountry =""
         namecountry = country_in
-        if namecountry == "": namecountry = input("country:")
+        if namecountry == "": namecountry = input("KIT > country? ")
         icountry = 0
         ncountry = ''
         for ncountry in fields:
@@ -127,7 +127,7 @@ def main(argv):
         print("| gs : accum.  incl. estim. recovery rate|")
         print("| me : my model                          |")
         print("| t2 : test plot                         |")
-        mode  = input('What is your calculate-model? ')
+        mode  = input('KIT > What is your calculate-model? ')
 #        print ('model: ' + mode)
 # RECOVERED SECLECT
     gesund = 0.0
@@ -135,8 +135,9 @@ def main(argv):
         gesund ='0.0'
     else:
         if (gesund_in == ""):
-            gesund_in  = input('Recovered factor? ')
-        gesund = float(str(gesund_in))
+            gesund_in  = float(input('KIT > Recovered factor? '))
+#        gesund = float(str(gesund_in))
+        gesund = gesund_in
     
 #    print ('Recovered factor : ' + str(gesund)) 
 
