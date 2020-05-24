@@ -137,7 +137,7 @@ def main(argv):
         if (gesund_in == ""):
             gesund_in  = input('KIT > Recovered factor? ')
         gesund = float(str(gesund_in))
-#        gesund = gesund_in
+#          gesund = gesund_in
     
 #    print ('Recovered factor : ' + str(gesund)) 
 
