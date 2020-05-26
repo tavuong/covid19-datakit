@@ -1,10 +1,13 @@
 # covid19-datakit
 [![N|](https://vuongblog.files.wordpress.com/2020/05/git_pt_vuong60.png)](https://vuongblog.wordpress.com)
 
+## Publication
+[towards datas cience](https://towardsdatascience.com/python-development-kit-for-visualizing-and-modelling-of-covid19-data-b33e7a13aace)  Python Development Kit for Visualizing and Modelling covid19-data. Dr. The Anh Vuong, 24.05.2020
+
 ## Description:
 - Development kit for Covid-Data Analysis and Visualization.
-- User could develop his owner model in user_model.py
-- User could develop his owner presentation in user_visual.py 
+- User could develop his own model in user_model.py
+- User could develop his own presentation in user_visual.py 
 - All analysis methods in tavuong_model.py are models for reasearch, could giving non-real statements.
 
 ## Features:
