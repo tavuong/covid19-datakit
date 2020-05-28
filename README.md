@@ -4,6 +4,7 @@
 ## Publication
 [towards datas cience](https://towardsdatascience.com/python-development-kit-for-visualizing-and-modelling-of-covid19-data-b33e7a13aace)  Python Development Kit for Visualizing and Modelling covid19-data. Dr. The Anh Vuong, 24.05.2020
 
+[Codvid19- Datakit WIKI](https://github.com/tavuong/covid19-datakit/wiki) Info for using
 ## Description:
 - Development kit for Covid-Data Analysis and Visualization.
 - User could develop his own model in user_model.py
@@ -32,7 +33,17 @@ $ cd ~/covid19-datakit/
 - You could find [here Data Sources](https://ourworldindata.org/coronavirus-source-data) or from other public source 
 
 ## covid19-datakit.py start & dialog
-### Direct to dialog
+### input format:
+```sh
+By direct input : 
+Name could have sape and dont put in '', eg. United States, United Kingdom
+Nummer  musst be  in '', e,g, '0,78'
+
+By command line
+Parmeters (Name, number)  must be in ''
+```
+
+### Direct start with dialog
 ```sh
 $ cd ~/covid19-datakit
 $ python covid19-datakit.py
@@ -45,11 +56,14 @@ Curve will be shown!
 
 ### command line
 ```sh
-usage: covid19-datakit-app1.py -i <inputfile> -o <outputfile>
+usage: covid19-datakit-app1.py -i <inputfile> -o <outputfile> -[c/m/g} 
 ```
-- inputfile :  Data-csv-file
-- outputfile : png-file of plot  
-  
+$ python .\covid19-datakit.py -h
+covid19-datakit
+-i <inputfile> -o <outputfile>
+-c country
+-m mode
+-g recover  
 ## covid19-datakit-app1.py, covid19-datakit-app2.pyg
 In development
 
