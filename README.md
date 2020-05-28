@@ -57,13 +57,14 @@ Curve will be shown!
 ### command line
 ```sh
 usage: covid19-datakit-app1.py -i <inputfile> -o <outputfile> -[c/m/g} 
-```
+
 $ python .\covid19-datakit.py -h
 covid19-datakit
 -i <inputfile> -o <outputfile>
 -c country
 -m mode
 -g recover  
+```
 ## covid19-datakit-app1.py, covid19-datakit-app2.pyg
 In development
 
