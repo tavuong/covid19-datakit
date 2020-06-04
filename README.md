@@ -65,8 +65,9 @@ covid19-datakit
 -m mode
 -g recover  
 ```
-## covid19-datakit-app1.py, covid19-datakit-app2.pyg
-In development
+## covid19-VuongSimulator.py
+Simulator to estimate Infection Cases from daily new cases and daily deaths cases
+In Development
 
 Project : covid19-datakit
 ----

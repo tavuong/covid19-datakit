@@ -8,7 +8,7 @@ from lib.tavuong_visual import *
 from lib.tavuong_readfile import *
 from lib.user_visual import *
 
-#  CSV-Data reading -> Header Filed 
+#  CSV-Data reading -> Header Filter 
 #------------------------------------------------------
 def tavuong_country_position(sname, namecountry, iland):
 # sanme : csv File
@@ -20,22 +20,24 @@ def tavuong_country_position(sname, namecountry, iland):
         plots = csv.reader(csvfile, delimiter=',')
         
         icountry = 0
-        fields = next(plots) 
+        fields = next(plots)
+        field_length = len(fields) 
 # list of countries
 #        print (fields)
+#        print (field_length)
             
 #   Country / Fieldname choise 
-#   icountry is colum-numer of Data        
+#   icountry is colum-numer of Data
         icountry = 0
         ncountry = ''
         for ncountry in fields:
             if (ncountry == namecountry):
-                print (str(icountry) + ": " + fields[icountry])
-                break
+#                print (str(icountry) + ": " + fields[icountry])
+                iland = icountry
+                return iland 
+#            print (str(icountry) + ": " + fields[icountry])
             icountry = icountry + 1
-#            print ("KIT >"+ str(icountry) + ": " + fields[icountry])
-            iland = icountry
-    return iland
+
 
     
 #---------------------------------------------------------------
@@ -44,7 +46,7 @@ def tavuong_read_timeseries(sname, iland,x,y, control):
 
 #    icountry = 0
     icountry = iland
-    print (iland, icountry)        
+#    print (iland, icountry)        
     with open(sname,'r') as csvfile:
 #            print ("loop"+ str(iloop) + " >"+ sname + str(icountry) + ": " +  "namecountry:"+ namecountry)
 #        fields = []  #header

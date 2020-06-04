@@ -81,7 +81,7 @@ def cal_yf(ys,y, faktor, Tau, gesund) :
 
 def cal_yg(yg,y, faktor, Tau, gesund) :
 # model: gesund / immun curve calculate
-
+# tau = recovery Period
     k = 0
     T = Tau     # Dummy
 #   f = reprod-faktor  
@@ -118,7 +118,7 @@ def cal_sig(ys,y, faktor, Tau, gesund) :
 
 def cal_s(ys,y, faktor, Tau, gesund) :
 # model: summe y(k) ,  time delay and fix faktor
-#   Dummy for smae Structture:
+#   Dummy for same Structture:
 #   faktor = R -Factor Fix or realtiv
 #   Tau = Incubation period
 #   gesund = recovery rate
@@ -131,7 +131,7 @@ def cal_s(ys,y, faktor, Tau, gesund) :
         ys[k] = py2       
  #       print (y[k] , py2, ys [k])
         k= k+1    
-    return{}
+    return py2
 
 def cal_rf0(ys,y, faktor, Tau, gesund) :
 # model: variabel faktor (t>Tau) + gesund faktor
@@ -153,7 +153,7 @@ def cal_rf0(ys,y, faktor, Tau, gesund) :
         else:
             f =0
         
-        ys[k] = f - gesund
+        ys[k] = (f - gesund) * y [k-1]
 #        print (f, y[k] , py2, ys [k])
         k= k+1    
     return{}

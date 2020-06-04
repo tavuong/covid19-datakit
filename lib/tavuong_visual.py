@@ -137,6 +137,17 @@ def tavuong_collection_rf1(x,y,y1,y2,gesund):
     
     
     return{}
+# -----------------------------------------
+# Summing and plot 
+def tavuong_plot_summe(x,ys,y, summe_text):
+
+#   (x,y) --> (x, ys= summe (y))
+    summe_t = 0    
+    summe_t = cal_s(ys,y,1,0,0)
+    summe_text = summe_text + str(int(summe_t))  
+    print ('Vuong_Simulator >' + summe_text)
+    plt.plot(x,ys, label=summe_text)
+    return summe_t
 
 def kit_plot_test2(t,x):
     
@@ -183,7 +194,7 @@ def show_curve(ax,sname,namecountry,outputfile):
     ax.legend()    
 #    plt.xlabel('date')
     plt.ylabel('values')
-    plt.title('Data: '+ sname +' ['+ namecountry + ']')
+    plt.title('KIT: '+ sname +' ['+ namecountry + ']')
 
 #   Credit for corona19-data-kit.  
     ax.text(1.0, -0.1, 'powered by Dr.-Ing. The Anh Vuong',
