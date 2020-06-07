@@ -22,16 +22,19 @@ def main(argv):
     gesund_in =""    
     ncasesfile=''
     deathsfile =''
+    tau_in =''
+    recP_in=''
+    simu_mode =''
     try:
         opts, args = getopt.getopt(argv,"hi:o:c:m:g:n:d:t:r:s:",["ifile=","ofile=","country=","mode=", "recover=",\
-        "nfile=","dfile=", "tau=", "recP="])
+        "nfile=","dfile=", "tau=", "recP=","simu="])
     except getopt.GetoptError:
         print ('test.py -i <inputfile> -o <outputfile>')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print ('COVID19-SIMULATION: \n -n <new_Cases_file> -d <new_Deaths_file> -o outputfile \n -c country -o mode'+ \
-            '\n VUONG Simulation Paramters: \n -g recover -t Incubation Periode -r Recovery Period -s simulation mode')
+            print ('VuongSimulation: \n -n <new_Cases_file> -d <new_Deaths_file> -o outputfile \n -c country'+ \
+            '\n -t Incubation Periode Tau \n -r Recovery Period \n -s simulation mode \n')
             sys.exit()
         elif opt in ("-i", "--ifile"):
             inputfile = arg
@@ -55,7 +58,7 @@ def main(argv):
             simu_mode = arg
 
 # input control
-#    print (argv)
+    print (argv)
 
 #    if argv[0] != "": print (argv)
 # --------------------------------------
@@ -71,11 +74,12 @@ def main(argv):
 # covid19-data-kit: CSV Data reading
 # source https://ourworldindata.org/coronavirus-source-data
 # download put to ./data, eg. new_casesC.csv
+# VMODEL input file is now -n and  -nd, -i is commented 
     sname = inputfile
-    if sname == "":
-        sname = input ('VMODEL > Case data file? ')
-    if sname =="":
-        sname = './data/new_casesC.csv'
+#    if sname == "":
+#        sname = input ('VMODEL > Case data file? ')
+#    if sname =="":
+#        sname = './data/new_casesC.csv'
     
 #    icountry = 0
 #    iland = 0 
@@ -86,11 +90,16 @@ def main(argv):
     namecountry =""
     namecountry = country_in
     if namecountry == "": namecountry = input("VMODEL > country? ")
+    print ('Country' , namecountry)
 
 # DIALOG
 # Mode select
+# set deirect to VUONG MODEL ta
     mode =""
     mode = mode_in
+    
+    mode ="ta"
+
     if mode == "": 
         print("| Visualization models:                  |")
         print("| ac : actual cases                      |")
@@ -99,17 +108,19 @@ def main(argv):
         print("| gs : accum.  incl. estim. recovery rate|")
         print("| me : my model                          |")
         print("| t2 : test plot                         |")
-        print("| ta : tavuong                           |")
-        mode  = input('VMODEL > What is your calculate-model? ')
-    print ('KIT > model: ' + mode)
+        print("| ta : VuongModell                       |")
+        mode  = input('KIT  > What is your calculate-model? ')
+#   print ('KIT > VuongModell' + mode)
 # RECOVERED SECLECT
     gesund = 0.0
-    if ((mode == "ac") or mode == "sr"):
+    if ((mode == "ac") or mode == "sr"or mode == "ta"):
         gesund ='0.0'
     else:
         if (gesund_in == ""):
             gesund_in  = input('KIT > Recovered factor? ')
         gesund = float(str(gesund_in))
+    gesund = 0.0
+
 #       gesund = gesund_in
     #    print ('Recovered factor : ' + str(gesund)) 
 
@@ -131,19 +142,46 @@ def main(argv):
 #        gesund = 0.8 
         tavuong_collection_gs(x,y,y1,y2,gesund)
     if (mode in 'rf'): 
-        tavuong_collection_rf1(x,y,y1,y2,gesund)
+         tavuong_collection_rf1(x,y,y1,y2,gesund)
 # TEST     
     if (mode in 't2'):
         kit_plot_test2(x,y) 
 
     if (mode in 'ta'):
-#        simu_mode  = input('VMODEL > Simulation Stufe ? ')
-#        print (simu_mode)
-#        simu_mode = 3
-        vuong_covid_Model (ncasesfile,deathsfile,country_in, gesund, int(simu_mode), int(tau_in),int(recP_in))
-#        print ("OK")
-#       if (iloop == 0): tavuong_multi_ac(x,nc,'blue',label_text=(namecountry + sname))
-#        if (iloop == 1): tavuong_multi_ac(x,nd,'red', label_text=(namecountry + sname))
+#        simu_mode  = int(input('VMODEL > Simulation Stufe ? '))
+#        if (simu_mode == ''):
+# simu_mode  -----------------------------------------------------------------
+        sread = ta_para_read('VMODEL > new_case-file ? ',ncasesfile, './data/new_cases.csv')
+        ncasesfile = sread
+        print ('new_case-file', ncasesfile)
+
+        sread = ta_para_read('VMODEL > deaths-file ? ',deathsfile, './data/new_deaths.csv')
+        deathsfile = sread
+        print ('deaths-file', deathsfile)
+
+        sread = ta_para_read('VMODEL > VuongSimualtion mode ? ',simu_mode, 6)
+        simu_mode = sread
+        print ('VuongSimualtion mode' , simu_mode)
+
+#       sread = ta_para_read('VMODEL > Simulation Stufe ? ',gesund, '0.90')
+#       gesund = float(str(sread))
+#       print (sread , gesund)
+        sread = ta_para_read('VMODEL > Incubation Period? ',tau_in, 7)
+        tau_in = sread
+        print ('Incubation Period' , tau_in)
+
+        sread = ta_para_read('VMODEL > Recovery Period ? ',recP_in, 14)
+        recP_in = sread
+        print ('Recovery Period' , recP_in)
+        
+        gesund = 0.0
+        if (gesund_in == ""):
+            gesund_in  = input('VMODEL > Fix factor? ')
+        gesund = float(str(gesund_in))
+
+
+        vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in))
+#       print ("OK")
 
 # JPEG OUTPUT: 
 #   picstore = 1
