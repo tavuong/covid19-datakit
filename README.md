@@ -68,7 +68,7 @@ covid19-datakit
 -g recover  
 ```
 ## covid19-VuongSimulator.py
-[Codvid19-VuongSimulator](https://github.com/tavuong/covid19-datakit/README_VuongSimulator.md) Readme of VuongSimulator
+[Codvid19-VuongSimulator](https://github.com/tavuong/covid19-datakit/README_VuongSimulator.md) VuongSimulator README
 
 Project : covid19-datakit
 ----
