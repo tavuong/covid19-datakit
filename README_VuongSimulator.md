@@ -78,7 +78,10 @@ Deaths nd [x]
 / Recovery Function G[x]
 / final estimated Infection I[x] /Deaths nd [x]
 ```
-
+## Examples commands
+```sh
+$ python .\covid19-VuongSimulator.py -c ‘United States’ -o test.png -m ta -n .\data\new_cases.csv -d .\data\new_deaths.csv -g ‘0.98’ -r ‘14’ -t ‘7’ -s ‘6’
+```
 Project : covid19-datakit
 ----
 Author: Dr.-Ing. The Anh Vuong 
