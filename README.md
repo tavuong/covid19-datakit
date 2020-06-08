@@ -4,6 +4,8 @@
 ## Publication
 [towards datas cience](https://towardsdatascience.com/python-development-kit-for-visualizing-and-modelling-of-covid19-data-b33e7a13aace)  Python Development Kit for Visualizing and Modelling covid19-data. Dr. The Anh Vuong, 24.05.2020
 
+[towards datas cience](https://towardsdatascience.com/prediction-and-analysis-of-covid-19-data-model-proposal-algorithm-vuong-simulator-2b05d1bded7e)  Prediction and Analysis of COVID-19 Data: Model — Proposal Algorithm- Vuong Simulator, 07.06.2020
+
 [Codvid19- Datakit WIKI](https://github.com/tavuong/covid19-datakit/wiki) Info for using
 ## Description:
 - Development kit for Covid-Data Analysis and Visualization.
@@ -56,7 +58,7 @@ Curve will be shown!
 
 ### command line
 ```sh
-usage: covid19-datakit-app1.py -i <inputfile> -o <outputfile> -[c/m/g} 
+usage: covid19-datakit.py -i <inputfile> -o <outputfile> -[c/m/g} 
 
 $ python .\covid19-datakit.py -h
 covid19-datakit
@@ -66,8 +68,7 @@ covid19-datakit
 -g recover  
 ```
 ## covid19-VuongSimulator.py
-Simulator to estimate Infection Cases from daily new cases and daily deaths cases
-In Development
+[Codvid19- Datakit WIKI](https://github.com/tavuong/covid19-datakit/README_VuongSimulator.md) Readme of VuongSimulator
 
 Project : covid19-datakit
 ----
