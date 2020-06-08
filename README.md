@@ -3,6 +3,8 @@
 
 [towards datas cience](https://towardsdatascience.com/prediction-and-analysis-of-covid-19-data-model-proposal-algorithm-vuong-simulator-2b05d1bded7e)  Prediction and Analysis of COVID-19 Data: Model — Proposal Algorithm- Vuong Simulator, 07.06.2020
 
+[towards datas cience](https://towardsdatascience.com/prediction-and-analysis-of-covid-19-data-model-proposal-algorithm-vuong-simulator-2b05d1bded7e)  Prediction and Analysis of COVID-19 Data: Model — Proposal Algorithm- Vuong Simulator, 07.06.2020
+
 
 ## Publication
 [towards datas cience](https://towardsdatascience.com/python-development-kit-for-visualizing-and-modelling-of-covid19-data-b33e7a13aace)  Python Development Kit for Visualizing and Modelling covid19-data. Dr. The Anh Vuong, 24.05.2020
