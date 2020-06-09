@@ -8,6 +8,8 @@
 [towards datas cience](https://towardsdatascience.com/prediction-and-analysis-of-covid-19-data-model-proposal-algorithm-vuong-simulator-2b05d1bded7e)  Prediction and Analysis of COVID-19 Data: Model — Proposal Algorithm- Vuong Simulator, 07.06.2020
 
 [Codvid19- Datakit WIKI](https://github.com/tavuong/covid19-datakit/wiki) Info for using
+
+[![N|](https://github.com/tavuong/covid19-datakit/blob/master/test.png)] Vuong Simulator Test for World Data
 ## Description:
 - Development kit for Covid-Data Analysis and Visualization.
 - User could develop his own model in user_model.py
