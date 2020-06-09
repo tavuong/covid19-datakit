@@ -9,7 +9,7 @@
 
 [Codvid19- Datakit WIKI](https://github.com/tavuong/covid19-datakit/wiki) Info for using
 
-[![N|](https://github.com/tavuong/covid19-datakit/blob/master/test.png)] Vuong Simulator Test for World Data
+[![N|](https://github.com/tavuong/covid19-datakit/blob/master/test.png)] Data analysis example for World Data 
 ## Description:
 - Development kit for Covid-Data Analysis and Visualization.
 - User could develop his own model in user_model.py
