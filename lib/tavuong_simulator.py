@@ -96,18 +96,18 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
     
     if (control==2):
         summe_text ="confirmed Inf.= "
-        summe_t = tavuong_plot_summe(x,y1,nc, summe_text)
+        summe_t = tavuong_plot_summe(x,y1,nc, summe_text,'')
     # plt.bar(x,y2, label='Sum infected')
 
         summe_text ="Deaths Cases= "
-        summe_t = tavuong_plot_summe(x,y1,nd, summe_text)
+        summe_t = tavuong_plot_summe(x,y1,nd, summe_text,'')
         plt.bar(x,y1, label='')
 
     if (control==3):
 
 # 1. new daily cases
         summe_text ="confirmed Inf.= "
-        summe_t = tavuong_plot_summe(x,y1,nc, summe_text)
+        summe_t = tavuong_plot_summe(x,y1,nc, summe_text,'')
 #        print ('Summe case =', summe_t)    
 # gesund = 0    
 #        cal_yf(y1,y,2,tau,0)
@@ -122,13 +122,13 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
         plt.plot(x,y2, label='rec. R='+ str(recP) + "fix" + str (gesund))
 
         summe_text ="Deaths Cases= "
-        summe_t = tavuong_plot_summe(x,y1,nd, summe_text)
+        summe_t = tavuong_plot_summe(x,y1,nd, summe_text,'')
         plt.bar(x,y1, label='')
     
     if (control==4):
 
         summe_text ="confirmed Inf.="
-        summe_t = tavuong_plot_summe(x,y1,nc, summe_text)
+        summe_t = tavuong_plot_summe(x,y1,nc, summe_text,'')
 
 #        cal_s(y1,nc,1,0,0)    
 #        plt.plot(x,y1, label='Sume Cases')
@@ -141,13 +141,13 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
         ta_recovery_calculate(y2,nc,y1)
 
         summe_text ='Reco.P ='+ str(recP) + '/ Est. Inf.='
-        summe_t = tavuong_plot_summe(x,y,y2, summe_text)
+        summe_t = tavuong_plot_summe(x,y,y2, summe_text,'')
 
 #        cal_s(y1,y2,1,0,0)
 #        plt.bar(x,y1, label='Recover / Period ='+ str(recP))
         
         summe_text ="Deaths Cases= "
-        summe_t = tavuong_plot_summe(x,y1,nd, summe_text)
+        summe_t = tavuong_plot_summe(x,y1,nd, summe_text,'')
         plt.bar(x,y1, label='')
     
     if (control==5):
@@ -155,8 +155,8 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 #        print ('Summe case =', summe_t)    
 #        plt.plot(x,y1, label='Infection: '+ str(summe_t))
         summe_text ="confirmed Inf.="
-        summe_t = tavuong_plot_summe(x,y1,nc, summe_text)
-#        print ('confirmed Inf.=', summe_t)    
+        summe_t = tavuong_plot_summe(x,y1,nc, summe_text,'')
+        #        print ('confirmed Inf.=', summe_t)    
 
 # 
 #        cal_yf(y1,nc,2,7,gesund)
@@ -167,7 +167,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 #        cal_s(y2,y1,1,0,0)    y
 #        plt.plot(x,y2, label='Inf / Tau='+ str(tau))
         summe_text ='Incub.P ='+ str(tau) + '/ Est. inf.='
-        summe_t = tavuong_plot_summe(x,y2,y1, summe_text)
+        summe_t = tavuong_plot_summe(x,y2,y1, summe_text,'')
 
 #        cal_cfexp(y1,nc,2,7,gesund)
 #        cal_s(y2,y1,1,0,0)    
@@ -180,17 +180,17 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 #        plt.plot(x,y2, label='Inf/Recovery Period ='+ str(recP))
 
         summe_text ='Reco.P ='+ str(recP) + '/ Est. Inf.='
-        summe_t = tavuong_plot_summe(x,y2,y, summe_text)
+        summe_t = tavuong_plot_summe(x,y2,y, summe_text,'')
 
 
         summe_text ="Deaths Cases= "
-        summe_t = tavuong_plot_summe(x,y1,nd, summe_text)
+        summe_t = tavuong_plot_summe(x,y1,nd, summe_text,'')
         plt.bar(x,y1, label='')
-    
+# --------------------------------------------------------------   
     if (control==6):
 # 1. new daily cases
         summe_text ="confirmed Inf.= "
-        summe_t = tavuong_plot_summe(x,y1,nc, summe_text)
+        summe_t = tavuong_plot_summe(x,y1,nc, summe_text,'')
 #        print ('Summe case =', summe_t)    
 
 # 2. extimate infection cases
@@ -199,23 +199,59 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
         if (tau!=0):
             cal_cfexp(y1,nc,1,tau,0.)
             summe_text ='Incub.P ='+ str(tau) + '/ Est. inf.='
-            summe_t = tavuong_plot_summe(x,y2,y1, summe_text)
+            summe_t = tavuong_plot_summe(x,y2,y1, summe_text,'')
         else:
             ta_recovery_copy(y1,nc)
 
 # 3. recovery cases after VUONG MODEL
         ta_recovery(y2,y1,nd, 1, recP, gesund)
         summe_text ='Reco.P ='+ str(recP) + '/ Est. recovery='
-        summe_t = tavuong_plot_summe(x,y,y2, summe_text)
+        summe_t = tavuong_plot_summe(x,y,y2,summe_text,'')
 
 # 4. extimat infection after VUONG MODEL
         ta_recovery_calculate(y,y1,y2)
         summe_text ='Reco.P ='+ str(recP) + '/ Est. Inf.='
-        summe_t = tavuong_plot_summe(x,y2,y, summe_text)
+        summe_t = tavuong_plot_summe(x,y2,y, summe_text,'')
 
 # 5 death cases
         summe_text ="Deaths Cases= "
-        summe_t = tavuong_plot_summe(x,y1,nd, summe_text)
+        summe_t = tavuong_plot_summe(x,y1,nd,summe_text,'')
+        plt.bar(x,y1, label='')
+# MOde 7 : 11.06.2020--------------------------------------------------------------   
+    if (control==7):
+# 1. new daily cases
+        summe_text ="confirmed Inf.= "
+        summe_t = tavuong_plot_summe(x,y1,nc, summe_text,"blue")
+#        print ('Summe case =', summe_t)    
+
+# 2. extimate infection cases
+
+# tau = 0 use the real cases
+
+#        ta_recovery(y2,nc,nd, 1, recP, gesund)
+#        ta_recovery_calculate(y1,nc,y2)
+#        summe_text ='Reco.P ='+ str(recP) + '/ Active Case ='
+#        summe_t = tavuong_plot_summe(x,y,y1, summe_text,'')
+
+#  tau != 0
+#  Vuong -Algorithm Prediction
+        cal_cfexp(y1,nc,1,tau,0.)
+        summe_text ='Incub.P ='+ str(tau) + '/ Predciction inf.='
+        summe_t = tavuong_plot_summe(x,y2,y1, summe_text,"m")
+
+# 3. VUONG Algorith recovery cases after VUONG MODEL
+        ta_recovery(y2,y1,nd, 1, recP, gesund)
+#        summe_text ='Reco.P ='+ str(recP) + '/ V-Recovery='
+#        summe_t = tavuong_plot_summe(x,y,y2, summe_text,'')
+
+# 4. Vuongf Algorithm extimate active cases
+        ta_recovery_calculate(y,y1,y2)
+        summe_text ='Reco.P ='+ str(recP) + '/ V-Active='
+        summe_t = tavuong_plot_summe(x,y2,y, summe_text, "red")
+
+# 5 death cases
+        summe_text ="Deaths Cases= "
+        summe_t = tavuong_plot_summe(x,y1,nd, summe_text, "black")
         plt.bar(x,y1, label='')
 
     return {}

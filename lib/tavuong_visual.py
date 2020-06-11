@@ -138,15 +138,29 @@ def tavuong_collection_rf1(x,y,y1,y2,gesund):
     
     return{}
 # -----------------------------------------
-# Summing and plot 
-def tavuong_plot_summe(x,ys,y, summe_text):
+# Summing and plot up Verison 1.8  Simulator
+# summ_color '#eeefff' HEX String
+# 'b'  blue
+# 'g'  green
+# 'r'  red
+# 'c'  cyan
+#'m'   magenta
+#'y'   yellow
+#'k'   black
+#'w'    white
+# by "" Automatic
+
+def tavuong_plot_summe(x,ys,y, summe_text,summe_color):
 
 #   (x,y) --> (x, ys= summe (y))
     summe_t = 0    
     summe_t = cal_s(ys,y,1,0,0)
     summe_text = summe_text + str(int(summe_t))  
     print ('Vuong_Simulator >' + summe_text)
-    plt.plot(x,ys, label=summe_text)
+    if (summe_color ==""):
+        plt.plot(x,ys, label=summe_text)
+    else:
+        plt.plot(x,ys, label=summe_text, color=summe_color)
     return summe_t
 
 def kit_plot_test2(t,x):
