@@ -253,6 +253,17 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
         summe_text ="Deaths Cases= "
         summe_t = tavuong_plot_summe(x,y1,nd, summe_text, "black")
         plt.bar(x,y1, label='')
+# MOde 8: 11.06.2020 multy country --------------------------------------------------------------   
+    if (control==8):
+#  Vuong -Algorithm Prediction
+        cal_cfexp(y1,nc,1,tau,0.)
+        ta_recovery(y2,y1,nd, 1, recP, gesund)
+
+# 4. Vuongf Algorithm extimate active cases
+        ta_recovery_calculate(y,y1,y2)
+        summe_text ='Country ='+ namecountry + '/ V-Active='
+        summe_t = tavuong_plot_summe(x,y2,y, summe_text, "")
+
 
     return {}
 #    show_curve(ax,sname,namecountry,outputfile)
