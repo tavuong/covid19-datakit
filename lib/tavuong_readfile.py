@@ -86,3 +86,12 @@ def tavuong_timeseries_generator(x,y):
     return (y)
 
 # --------------------------------------------------------
+def tavuong_country_name(sname):
+# sanme : csv File
+# country_list fields
+
+    with open(sname,'r') as csvfile:
+        fields = []
+        plots = csv.reader(csvfile, delimiter=',')
+        fields = next(plots)
+    return fields

@@ -179,12 +179,24 @@ def main(argv):
             gesund_in  = input('VMODEL > Fix factor? ')
         gesund = float(str(gesund_in))
 
+# MUlti Country - Mode 8
+# LIst von Country ./data/country:list.csv
+        if (int(simu_mode) <= 6):
+            vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in))
+        else:
 
-        vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in))
+#           listn = ['Germany', 'Italy', 'France', 'Sweden', 'Belgium', 'United Kingdom', 'Russia']
+            listn = []
+            listn = tavuong_country_name('./data/vmodel_testlist.csv')
+            print (listn)
+            for ncc in listn:
+                namecountry = ncc
+                print ('VMODEL > ', ncc, namecountry) 
+                vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in))
+            
+            namecountry = "Multi"
+
 #       print ("OK")
-
-# JPEG OUTPUT: 
-#   picstore = 1
     picstore = 0
 
     show_curve(ax,"Dr.Vuong-COVID19-SIMULATOR",namecountry,outputfile)
