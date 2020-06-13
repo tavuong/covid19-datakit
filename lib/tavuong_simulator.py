@@ -75,6 +75,8 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 #    fig, ax = plt.subplots()
     y = [] # Buffer
     y = tavuong_timeseries_generator(x,y)
+    y3=[]
+    y3 = tavuong_timeseries_generator(x,y3)
 
 #    print (control)
     r=0 # dummy
@@ -83,11 +85,11 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 #        cal_y(y1,nc,1,0)    
 #        plt.plot(x,y1, label='infection (t)')
 
-#        y2 = cal_cfexp(y1,nc,1,tau,0.)
+#        y2 = cal_vuomod(y1,nc,1,tau,0.)
 #        summe_text ='Incub. ='+ str(tau) + '/ Est. inf.='
 #        plt.plot(x,y1, label=summe_text)
 
-        y2 = cal_cfexp(y1,nc,1,tau,0.)
+        y2 = cal_vuomod(y1,nc,1,tau,0.)
         summe_text ='R-Factor / Incub.P='+ str(tau) 
         plt.plot(x,y2, label=summe_text)
         
@@ -133,12 +135,12 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 #        cal_s(y1,nc,1,0,0)    
 #        plt.plot(x,y1, label='Sume Cases')
 
-#        cal_cfexp(y1,nc,2,7,0.0)
+#        cal_vuomod(y1,nc,2,7,0.0)
 #        cal_s(y2,y1,1,0,0)    
 #        plt.plot(x,y2, label='Inf (T=7,f:log')
 
         ta_recovery(y1,nc, nd, 1, recP, gesund)
-        ta_recovery_calculate(y2,nc,y1)
+        ta_active_Infection(y2,nc,y1)
 
         summe_text ='Reco.P ='+ str(recP) + '/ Est. Inf.='
         summe_t = tavuong_plot_summe(x,y,y2, summe_text,'')
@@ -163,19 +165,19 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 #        cal_s(y2,y1,1,0,0)    
 #        plt.plot(x,y2, label='Inf (ESt: 14, f=2)')
 
-        cal_cfexp(y1,nc,1,tau,0.)
+        cal_vuomod(y1,nc,1,tau,0.)
 #        cal_s(y2,y1,1,0,0)    y
 #        plt.plot(x,y2, label='Inf / Tau='+ str(tau))
         summe_text ='Incub.P ='+ str(tau) + '/ Est. inf.='
         summe_t = tavuong_plot_summe(x,y2,y1, summe_text,'')
 
-#        cal_cfexp(y1,nc,2,7,gesund)
+#        cal_vuomod(y1,nc,2,7,gesund)
 #        cal_s(y2,y1,1,0,0)    
 #        plt.plot(x,y2, label='Inf (EST:7,f:log, fix gesund')
 
-        cal_cfexp(y1,nc,1,tau,0.0)
+        cal_vuomod(y1,nc,1,tau,0.0)
         ta_recovery(y2,y1,nd, 1, recP, gesund)
-        ta_recovery_calculate(y,y1,y2)
+        ta_active_Infection(y,y1,y2)
 #        cal_s(y2,y,1,0,0)
 #        plt.plot(x,y2, label='Inf/Recovery Period ='+ str(recP))
 
@@ -186,7 +188,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
         summe_text ="Deaths Cases= "
         summe_t = tavuong_plot_summe(x,y1,nd, summe_text,'')
         plt.bar(x,y1, label='')
-# --------------------------------------------------------------   
+# MODE 6 ############## PUBLICATION TSD _ MEDIUM ########################
     if (control==6):
 # 1. new daily cases
         summe_text ="confirmed Inf.= "
@@ -197,7 +199,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 # tau = 0 use the real cases
 #        tau = 0
         if (tau!=0):
-            cal_cfexp(y1,nc,1,tau,0.)
+            cal_vuomod(y1,nc,1,tau,0.)
             summe_text ='Incub.P ='+ str(tau) + '/ Est. inf.='
             summe_t = tavuong_plot_summe(x,y2,y1, summe_text,'')
         else:
@@ -209,7 +211,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
         summe_t = tavuong_plot_summe(x,y,y2,summe_text,'')
 
 # 4. extimat infection after VUONG MODEL
-        ta_recovery_calculate(y,y1,y2)
+        ta_active_Infection(y,y1,y2)
         summe_text ='Reco.P ='+ str(recP) + '/ Est. Inf.='
         summe_t = tavuong_plot_summe(x,y2,y, summe_text,'')
 
@@ -217,7 +219,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
         summe_text ="Deaths Cases= "
         summe_t = tavuong_plot_summe(x,y1,nd,summe_text,'')
         plt.bar(x,y1, label='')
-# MOde 7 : 11.06.2020--------------------------------------------------------------   
+# MOde 7 : 11.06.2020  --------------------------------------------------------------   
     if (control==7):
 # 1. new daily cases
         summe_text ="confirmed Inf.= "
@@ -229,13 +231,13 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 # tau = 0 use the real cases
 
 #        ta_recovery(y2,nc,nd, 1, recP, gesund)
-#        ta_recovery_calculate(y1,nc,y2)
+#        ta_active_Infection(y1,nc,y2)
 #        summe_text ='Reco.P ='+ str(recP) + '/ Active Case ='
 #        summe_t = tavuong_plot_summe(x,y,y1, summe_text,'')
 
 #  tau != 0
 #  Vuong -Algorithm Prediction
-        cal_cfexp(y1,nc,1,tau,0.)
+        cal_vuomod(y1,nc,1,tau,0.)
         summe_text ='Incub.P ='+ str(tau) + '/ Predciction inf.='
         summe_t = tavuong_plot_summe(x,y2,y1, summe_text,"m")
 
@@ -245,7 +247,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 #        summe_t = tavuong_plot_summe(x,y,y2, summe_text,'')
 
 # 4. Vuongf Algorithm extimate active cases
-        ta_recovery_calculate(y,y1,y2)
+        ta_active_Infection(y,y1,y2)
         summe_text ='Reco.P ='+ str(recP) + '/ V-Active='
         summe_t = tavuong_plot_summe(x,y2,y, summe_text, "red")
 
@@ -253,16 +255,28 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
         summe_text ="Deaths Cases= "
         summe_t = tavuong_plot_summe(x,y1,nd, summe_text, "black")
         plt.bar(x,y1, label='')
-# MOde 8: 11.06.2020 multy country --------------------------------------------------------------   
+# MOde 8: 11.06.2020 multy country ##########################   
     if (control==8):
 #  Vuong -Algorithm Prediction
-        cal_cfexp(y1,nc,1,tau,0.)
+        cal_vuomod(y1,nc,1,tau,0.)
         ta_recovery(y2,y1,nd, 1, recP, gesund)
 
 # 4. Vuongf Algorithm extimate active cases
-        ta_recovery_calculate(y,y1,y2)
+        ta_active_Infection(y,y1,y2)
         summe_text ='Country ='+ namecountry + '/ V-Active='
         summe_t = tavuong_plot_summe(x,y2,y, summe_text, "")
+
+# MOde 9: 12.06.2020 multy country Normierte ######################   
+    if (control==9):
+#  Vuong -Algorithm Prediction
+        cal_vuomod(y1,nc,1,tau,0.)
+        ta_recovery(y2,y1,nd, 1, recP, gesund)
+
+# 4. Vuongf Algorithm extimate active cases
+        ta_active_Infection(y,y1,y2)
+        y3 = ta_norm (y1,y)
+        summe_text ='Country ='+ namecountry + '/ V-Active='
+        summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
 
 
     return {}
@@ -270,7 +284,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 #    show_curve(ax,"VUONG_MODEL",namecountry,"")
 
 #-----------------------------------------------------
-def cal_cfexp(yr,y, faktor, Tau, gesund) :
+def cal_vuomod(yr,y, faktor, Tau, gesund) :
 # VUONG model: Calculation of Infection from Daily New Cases
 # 
 #   faktor is fix R-factor is dummy here
@@ -358,7 +372,7 @@ def ta_recovery(yr,y, yd, faktor, recP, gesund) :
         k= k+1    
     return
 
-def ta_recovery_calculate(r,x,y):
+def ta_active_Infection(r,x,y):
 # r = rest Infection
 # x = infection cases
 # y = recovered cases
@@ -393,3 +407,28 @@ def ta_para_read(text_req, read_in, default):
         else:
             return default
     return read_in
+
+def ta_norm (y1,y):
+
+#    gfg = np.matrix(y) 
+#    geeks = gfg.max() 
+#    print(geeks)
+    y3 = [] 
+    k = 0
+    for k in y:
+        y3.append(0.0)    
+    
+    k = 0
+    summe = 0
+    for i in y1:
+        summe = y1[k] + summe
+        k = k+1
+    k = 0
+    print (summe)
+    ywert = 0.0
+    for i in y:
+        ywert = y [k]      
+        y3[k] = 100.0*ywert/summe
+ #       print ('VMODEL > ', y3[k], y[k], summe)
+        k = k+1    
+    return y3 
