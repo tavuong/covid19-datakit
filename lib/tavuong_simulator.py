@@ -12,7 +12,7 @@ from lib.tavuong_model import *
 from lib.tavuong_readfile import *
 from lib.user_visual import *
     
-def vuong_covid_Model (ncasesfile,deathsfile,country_in, gesund,simu_mode,tau,recP):
+def vuong_covid_Model (ncasesfile,deathsfile,country_in, gesund,simu_mode,tau,recP,sw7):
 # Data Reading 
     x = [] # csv 0. Colum
     y = [] # csv 1. Colum
@@ -58,10 +58,10 @@ def vuong_covid_Model (ncasesfile,deathsfile,country_in, gesund,simu_mode,tau,re
 #    icontrol = 1
 #    icontrol = 3
 #    print(simu_mode,tau)
-    ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,simu_mode,tau,recP)
+    ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,simu_mode,tau,recP,sw7)
     
     return()
-def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
+def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 # ----Actualcase ----------------------------------
 #   x [] datum
 #   y [] case Data 
@@ -222,39 +222,48 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
 # MOde 7 : 11.06.2020  --------------------------------------------------------------   
     if (control==7):
 # 1. new daily cases
-        summe_text ="confirmed Inf.= "
-        summe_t = tavuong_plot_summe(x,y1,nc, summe_text,"blue")
-#        print ('Summe case =', summe_t)    
+        if (sw7 == 1):
+            summe_text ='Country ='+ namecountry + '/ confirmed Cases='
+            plt.plot(x,nc, label=summe_text)
+            return
+# 2. Summe  cases
+        if (sw7 == 2):
+            summe_text ='Country ='+ namecountry + '/ confirmed Cases='
+            summe_t = tavuong_plot_summe(x,y1,nc, summe_text,"")
+            print ('Summe cases =', summe_t)    
+            return
+# 3. Active Case
+# ----Fix Gesund recovery --- active casese
+        if (sw7 == 3):
+            ta_recovery_copy(y1,nc)
+            cal_yg(y2,nc,1, recP, gesund)
+            ta_active_Infection(y,y1,y2)
+            ta_recovery_copy(y3,y)
+            summe_text ='Country ='+ namecountry + '/ f-Active='
+            summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
+            return        
+# ----Vuong -Algorithm Prediction --active Cases
+# ------ Roh Data 
+        if (sw7 == 4):
+            cal_vuomod(y1,nc,1,tau,0.)
+            ta_recovery(y2,y1,nd, 1, recP, gesund)
+            ta_active_Infection(y,y1,y2)
+            ta_recovery_copy(y3,y)
+            summe_text ='Country ='+ namecountry + '/ V-Active='
+            summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
+            return
 
-# 2. extimate infection cases
+# ----- unification, standardization 
+        if (sw7 == 5):
+            cal_vuomod(y1,nc,1,tau,0.)
+            ta_recovery(y2,y1,nd, 1, recP, gesund)
+            ta_active_Infection(y,y1,y2)
+            y3 = ta_norm (y,nc)
+            summe_text ='Country ='+ namecountry + '/ V-Active(%)='
+            summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
+#        plt.plot(x,y3, label=summe_text)
+            return
 
-# tau = 0 use the real cases
-
-#        ta_recovery(y2,nc,nd, 1, recP, gesund)
-#        ta_active_Infection(y1,nc,y2)
-#        summe_text ='Reco.P ='+ str(recP) + '/ Active Case ='
-#        summe_t = tavuong_plot_summe(x,y,y1, summe_text,'')
-
-#  tau != 0
-#  Vuong -Algorithm Prediction
-        cal_vuomod(y1,nc,1,tau,0.)
-        summe_text ='Incub.P ='+ str(tau) + '/ Predciction inf.='
-        summe_t = tavuong_plot_summe(x,y2,y1, summe_text,"m")
-
-# 3. VUONG Algorith recovery cases after VUONG MODEL
-        ta_recovery(y2,y1,nd, 1, recP, gesund)
-#        summe_text ='Reco.P ='+ str(recP) + '/ V-Recovery='
-#        summe_t = tavuong_plot_summe(x,y,y2, summe_text,'')
-
-# 4. Vuongf Algorithm extimate active cases
-        ta_active_Infection(y,y1,y2)
-        summe_text ='Reco.P ='+ str(recP) + '/ V-Active='
-        summe_t = tavuong_plot_summe(x,y2,y, summe_text, "red")
-
-# 5 death cases
-        summe_text ="Deaths Cases= "
-        summe_t = tavuong_plot_summe(x,y1,nd, summe_text, "black")
-        plt.bar(x,y1, label='')
 # MOde 8: 11.06.2020 multy country ##########################   
     if (control==8):
 #  Vuong -Algorithm Prediction
@@ -266,17 +275,27 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP):
         summe_text ='Country ='+ namecountry + '/ V-Active='
         summe_t = tavuong_plot_summe(x,y2,y, summe_text, "")
 
-# MOde 9: 12.06.2020 multy country Normierte ######################   
+# MOde 9: 12.06.2020 multy country Normierte ######################
+# by Tau = 0 : use nc and recovery (nc , fix gesund)
+# by Tau != 0 : use Vmodel with nc (Tau) and recovery (nd, recP)   
     if (control==9):
+        if (tau == 0):
+# Gesund after nc
+            ta_recovery_copy(y1,nc)
+            cal_yg(y2,nc,1, recP, gesund)        
+        else:
 #  Vuong -Algorithm Prediction
-        cal_vuomod(y1,nc,1,tau,0.)
-        ta_recovery(y2,y1,nd, 1, recP, gesund)
-
+            cal_vuomod(y1,nc,1,tau,0.)
+#  Vuong Algorithm extimate active cases
+            ta_recovery(y2,y1,nd, 1, recP, gesund)
+        
 # 4. Vuongf Algorithm extimate active cases
         ta_active_Infection(y,y1,y2)
-        y3 = ta_norm (y1,y)
-        summe_text ='Country ='+ namecountry + '/ V-Active='
+#        y3 = ta_norm (y,y1)
+        y3 = ta_norm (y,nc)
+        summe_text ='Country ='+ namecountry + '/ V-Active(%)='
         summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
+#        plt.plot(x,y3, label=summe_text)
 
 
     return {}
@@ -408,8 +427,10 @@ def ta_para_read(text_req, read_in, default):
             return default
     return read_in
 
-def ta_norm (y1,y):
-
+def ta_norm (y,y1):
+# y: zu berechnen
+# y1 : Norm
+# y3 = ta_norm : calculead value
 #    gfg = np.matrix(y) 
 #    geeks = gfg.max() 
 #    print(geeks)
@@ -417,18 +438,27 @@ def ta_norm (y1,y):
     k = 0
     for k in y:
         y3.append(0.0)    
-    
+#------ Summe als norm---    
     k = 0
     summe = 0
-    for i in y1:
-        summe = y1[k] + summe
+    for i in y:
+        summe = y[k] + summe
+        y3[k] = summe
         k = k+1
     k = 0
-    print (summe)
+    print ('summe=', summe)
+#-----------------
+    gfg = np.matrix(y3) 
+    geeks = gfg.max() 
+    print('max=', geeks)
+    summe = geeks
+
     ywert = 0.0
     for i in y:
         ywert = y [k]      
         y3[k] = 100.0*ywert/summe
+#        y3[k] = ywert/summe
+
  #       print ('VMODEL > ', y3[k], y[k], summe)
         k = k+1    
     return y3 

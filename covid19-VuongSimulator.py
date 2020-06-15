@@ -179,11 +179,26 @@ def main(argv):
             gesund_in  = input('VMODEL > Fix factor? ')
         gesund = float(str(gesund_in))
 
-# MUlti Country - Mode 8
-# LIst von Country ./data/country:list.csv
+# One  Country - Mode 1-6
         if (int(simu_mode) <= 6):
-            vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in))
+            vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in),5)
+
+# MUlti Country - Mode 7-9
+# ----List von Country ./data/country:list.csv
+# ----new parameter for mode 7
         else:
+            switch7 = '5'
+# ------dialog for mode 7
+            if (int(simu_mode) == 7):
+                switch7 = ''
+                sread = ta_para_read('VMODEL > Mode Switch ? ',switch7, '5')
+                switch7 = sread
+                print ('Mode ', simu_mode, 'switch: ', switch7)
+#-------command line for mode 7
+            if (int(simu_mode) > 70) and (int(simu_mode) < 79):
+                switch7 = int(simu_mode) - 70
+                simu_mode = '7'
+
 
 #           listn = ['Germany', 'Italy', 'France', 'Sweden', 'Belgium', 'United Kingdom', 'Russia']
             listn = []
@@ -192,12 +207,12 @@ def main(argv):
             for ncc in listn:
                 namecountry = ncc
                 print ('VMODEL > ', ncc, namecountry) 
-                vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in))
+                vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in),int(switch7))
             
             namecountry = "Multi"
 
-#       print ("OK")
-    picstore = 0
+# show
+#    picstore = 0
 
     show_curve(ax,"Dr.Vuong-COVID19-SIMULATOR",namecountry,outputfile)
 
