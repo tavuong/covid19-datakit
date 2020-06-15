@@ -252,7 +252,6 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             summe_text ='Country ='+ namecountry + '/ f-Active (%)='
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
             return        
-
 # ----Vuong -Algorithm Prediction --active Cases
 # ------ Roh Data 
         if (sw7 == 5):

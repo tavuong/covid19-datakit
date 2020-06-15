@@ -199,7 +199,6 @@ def main(argv):
                 switch7 = int(simu_mode) - 70
                 simu_mode = '7'
 
-
 #           listn = ['Germany', 'Italy', 'France', 'Sweden', 'Belgium', 'United Kingdom', 'Russia']
             listn = []
             listn = tavuong_country_name('./data/vmodel_testlist.csv')
