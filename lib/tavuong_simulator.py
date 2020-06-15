@@ -234,6 +234,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             return
 # 3. Active Case
 # ----Fix Gesund recovery --- active casese
+# ------ Roh Data 
         if (sw7 == 3):
             ta_recovery_copy(y1,nc)
             cal_yg(y2,nc,1, recP, gesund)
@@ -242,9 +243,19 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             summe_text ='Country ='+ namecountry + '/ f-Active='
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
             return        
+# ----- unification, standardization 
+        if (sw7 == 4):
+            ta_recovery_copy(y1,nc)
+            cal_yg(y2,nc,1, recP, gesund)
+            ta_active_Infection(y,y1,y2)
+            y3 = ta_norm (y,nc)
+            summe_text ='Country ='+ namecountry + '/ f-Active (%)='
+            summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
+            return        
+
 # ----Vuong -Algorithm Prediction --active Cases
 # ------ Roh Data 
-        if (sw7 == 4):
+        if (sw7 == 5):
             cal_vuomod(y1,nc,1,tau,0.)
             ta_recovery(y2,y1,nd, 1, recP, gesund)
             ta_active_Infection(y,y1,y2)
@@ -254,7 +265,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             return
 
 # ----- unification, standardization 
-        if (sw7 == 5):
+        if (sw7 == 6):
             cal_vuomod(y1,nc,1,tau,0.)
             ta_recovery(y2,y1,nd, 1, recP, gesund)
             ta_active_Infection(y,y1,y2)
