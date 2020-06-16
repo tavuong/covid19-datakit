@@ -8,15 +8,18 @@ from lib.tavuong_visual import *
 from lib.tavuong_model import *
 from lib.tavuong_readfile import *
 from lib.user_visual import *
-# LIB for COVID SIMULATION
-# VUONG MODEL - VUONG SIMULATOR
+# VUONG SIMULATION
+# ---LIB of system 
+# ---VUONG ALGORITHM
 #  Author: Dr. The Anh Vuong
 # (c) 2020 by Dr.-The Anh Vuong
 # Licence: MIT , Patent right is reserved
 # ------------------------------------------
     
 def vuong_covid_Model (ncasesfile,deathsfile,country_in, gesund,simu_mode,tau,recP,sw7):
-# Data Reading 
+# VUONG SIMULATOR 
+# ---INPUT BLOCK
+
     x = [] # csv 0. Colum
     y = [] # csv 1. Colum
     nc = [] # new_case 1. Colum
@@ -64,23 +67,26 @@ def vuong_covid_Model (ncasesfile,deathsfile,country_in, gesund,simu_mode,tau,re
     ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,simu_mode,tau,recP,sw7)
     
     return()
+
 def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
-# VUONG model: Covid-data Analysis 
+# VUONG SIMULATOR 
+# ---Covid-data Analysis 
 #  Author: Dr. The Anh Vuong
 # (c) 2020 by Dr.-The Anh Vuong
 # Licence: MIT , Patent right is reserved
 #--------------------------------------------------
-# ----Actualcase ----------------------------------
 #   x [] datum
-#   y [] case Data 
+#   nc [] confirm Cases
+#   nd [] deaths
 #   y1[] buffer/ Reserved
 #   y2[] buffer/ Reserved
-#   namecontry = Choice Colume 
+#   namecountry = Choice Colume 
+#   gesund = recovery factor
+#   tau = Incubation Period
+#   recP = Recovery Period
+#   control = Analysis mode
+#   sw7 = Swicht mode 7
 
-#  direct plot Y(x)
-#    plt.bar(x,y, color ="green", label='infection (t)')
-#  using tavuong_model y1(y(x))
-#    fig, ax = plt.subplots()
     y = [] # Buffer
     y = tavuong_timeseries_generator(x,y)
     y3=[]
@@ -89,6 +95,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 #    print (control)
     r=0 # dummy
     summe_t = 0.0
+#   ------- control =1  ------------
     if (control==1):
 #        cal_y(y1,nc,1,0)    
 #        plt.plot(x,y1, label='infection (t)')
@@ -103,6 +110,8 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
         
 #        cal_y(y1,nd,1,0)    
 #        plt.bar(x,y1, label='deaths')
+
+#   ------- control =2   ------------
     
     if (control==2):
         summe_text ="confirmed Inf.= "
@@ -112,6 +121,8 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
         summe_text ="Deaths Cases= "
         summe_t = tavuong_plot_summe(x,y1,nd, summe_text,'')
         plt.bar(x,y1, label='')
+
+#   ------- control =3   ------------
 
     if (control==3):
 
@@ -134,6 +145,8 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
         summe_text ="Deaths Cases= "
         summe_t = tavuong_plot_summe(x,y1,nd, summe_text,'')
         plt.bar(x,y1, label='')
+
+#   ------- control =4   ------------
     
     if (control==4):
 
@@ -159,6 +172,8 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
         summe_text ="Deaths Cases= "
         summe_t = tavuong_plot_summe(x,y1,nd, summe_text,'')
         plt.bar(x,y1, label='')
+
+#   ------- control =5   ------------
     
     if (control==5):
 #        summe_t = cal_s(y1,nc,1,0,0)
@@ -196,6 +211,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
         summe_text ="Deaths Cases= "
         summe_t = tavuong_plot_summe(x,y1,nd, summe_text,'')
         plt.bar(x,y1, label='')
+#   ------- control = 6   ------------
 # MODE 6 ############## PUBLICATION TSD _ MEDIUM ########################
     if (control==6):
 # 1. new daily cases
@@ -227,22 +243,28 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
         summe_text ="Deaths Cases= "
         summe_t = tavuong_plot_summe(x,y1,nd,summe_text,'')
         plt.bar(x,y1, label='')
+
+#   ------- control = 7 MULTI COUNTRIES   ------------
+#   ------- control = 71-76   ------------
+
 # MOde 7 : 11.06.2020  --------------------------------------------------------------   
     if (control==7):
-# 1. new daily cases
+
+# 71. new daily cases
         if (sw7 == 1):
             summe_text ='Country ='+ namecountry + '/ confirmed Cases='
             plt.plot(x,nc, label=summe_text)
             return
-# 2. Summe  cases
+
+# 72. Summe  cases
         if (sw7 == 2):
             summe_text ='Country ='+ namecountry + '/ confirmed Cases='
             summe_t = tavuong_plot_summe(x,y1,nc, summe_text,"")
             print ('Summe cases =', summe_t)    
             return
-# 3. Active Case
-# ----Fix Gesund recovery --- active casese
-# ------ Roh Data 
+# 73. Active Case
+# ----confirmed Cases
+# ----Fix Gesund recovery 
         if (sw7 == 3):
             ta_recovery_copy(y1,nc)
             cal_yg(y2,nc,1, recP, gesund)
@@ -251,7 +273,9 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             summe_text ='Country ='+ namecountry + '/ f-Active='
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
             return        
-# ----- unification, standardization 
+# 74. unified active Case
+# ----confirmed Cases
+# ----Fix Gesund recovery
         if (sw7 == 4):
             ta_recovery_copy(y1,nc)
             cal_yg(y2,nc,1, recP, gesund)
@@ -260,8 +284,9 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             summe_text ='Country ='+ namecountry + '/ f-Active (%)='
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
             return        
-# ----Vuong -Algorithm Prediction --active Cases
-# ------ Roh Data 
+# 75. VUONG-ALorithm : Active Cases
+# ----estimated Infections cases 
+# ----estimated  Gesund recovery
         if (sw7 == 5):
             cal_vuomod(y1,nc,1,tau,0.)
             ta_recovery(y2,y1,nd, 1, recP, gesund)
@@ -271,7 +296,9 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
             return
 
-# ----- unification, standardization 
+# 76. VUONG-ALorithm : unified Active Cases
+# ----estimated Infections cases 
+# ----estimated  Gesund recovery
         if (sw7 == 6):
             cal_vuomod(y1,nc,1,tau,0.)
             ta_recovery(y2,y1,nd, 1, recP, gesund)
@@ -284,12 +311,11 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 
 # MOde 8: 11.06.2020 multy country ##########################   
     if (control==8):
-#  Vuong -Algorithm Prediction
+# ----VUONG-ALorithm Prediction
         cal_vuomod(y1,nc,1,tau,0.)
         ta_recovery(y2,y1,nd, 1, recP, gesund)
-
-# 4. Vuongf Algorithm extimate active cases
         ta_active_Infection(y,y1,y2)
+
         summe_text ='Country ='+ namecountry + '/ V-Active='
         summe_t = tavuong_plot_summe(x,y2,y, summe_text, "")
 
@@ -302,12 +328,12 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             ta_recovery_copy(y1,nc)
             cal_yg(y2,nc,1, recP, gesund)        
         else:
-#  Vuong -Algorithm Prediction
+# ---- VUONG-ALorithm Prediction
             cal_vuomod(y1,nc,1,tau,0.)
-#  Vuong Algorithm extimate active cases
+# ---- VUONG-ALorithm gesund function
             ta_recovery(y2,y1,nd, 1, recP, gesund)
         
-# 4. Vuongf Algorithm extimate active cases
+# ---- VUONG-ALorithm extimate active cases
         ta_active_Infection(y,y1,y2)
 #        y3 = ta_norm (y,y1)
         y3 = ta_norm (y,nc)
@@ -317,12 +343,11 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 
 
     return {}
-#    show_curve(ax,sname,namecountry,outputfile)
-#    show_curve(ax,"VUONG_MODEL",namecountry,"")
 
 #-----------------------------------------------------
 def cal_vuomod(yr,y, faktor, Tau, gesund) :
-# VUONG model: Calculation of recovery cases from daily deaths
+# VUONG SIMULATOR 
+# --- Vuong Algorithm  Estimate infection cases 
 #  Author: Dr. The Anh Vuong
 # (c) 2020 by Dr.-The Anh Vuong
 # Licence: MIT , Patent right is reserved
@@ -330,7 +355,6 @@ def cal_vuomod(yr,y, faktor, Tau, gesund) :
 #  faktor is fix R-factor is dummy here
 #  Tau is incubation period. Tau = 0 : direct to nc data without estimation
 #  gesund is fix recovery rate is dummy here
-#--------------------------------------------------------------
 
 
 #   r-Factor File generator
@@ -377,7 +401,8 @@ def cal_vuomod(yr,y, faktor, Tau, gesund) :
     return rfl
 # -----------------------------------------------------------
 def ta_recovery(yr,y, yd, faktor, recP, gesund) :
-# VUONG model: Calculation of recovery cases from daily deaths
+# VUONG SIMULATOR 
+# ---- VUONG-Aligorithm: Calculation of recovery cases from daily deaths
 #  Author: Dr. The Anh Vuong
 # (c) 2020 by Dr.-The Anh Vuong
 # Licence: MIT , Patent right is reserved
@@ -385,10 +410,10 @@ def ta_recovery(yr,y, yd, faktor, recP, gesund) :
 #  faktor is fix R-factor is dummy here
 #  Tau is incubation period. Tau = 0 : direct to nc data without estimation
 #  gesund is fix recovery rate is dummy here
-# yr : Out put
-# y : inf cases
-# yd: deaths cases
-# in developping
+#  yr : Out put
+#  y : inf cases
+#  yd: deaths cases
+#  in developping
     k = 0
     T = recP     # Recovery Period
     f = faktor  # f is generated, f=1 by Tau =0 
@@ -417,10 +442,13 @@ def ta_recovery(yr,y, yd, faktor, recP, gesund) :
     return
 
 def ta_active_Infection(r,x,y):
-# VUONG model: Calculation of active cases 
+# VUONG SIMULATOR 
+# ---- VUONG-Aligorithm: Calculation of active cases 
+#      from Estim. Infection & Gesund function
 #  Author: Dr. The Anh Vuong
 # (c) 2020 by Dr.-The Anh Vuong
 # Licence: MIT , Patent right is reserved
+#--------------------------------------------------
 # r = rest Infection
 # x = infection cases
 # y = recovered cases
@@ -457,17 +485,23 @@ def ta_para_read(text_req, read_in, default):
     return read_in
 
 def ta_norm (y,y1):
-# y: zu berechnen
+# VUONG SIMULATOR 
+# ---- VUONG-Aligorithm: unified calculation 
+#  Author: Dr. The Anh Vuong
+# (c) 2020 by Dr.-The Anh Vuong
+# Licence: MIT , Patent right is reserved
+#--------------------------------------------------
+# y: input
 # y1 : Norm
-# y3 = ta_norm : calculead value
-#    gfg = np.matrix(y) 
-#    geeks = gfg.max() 
-#    print(geeks)
+# y3 = ta_norm : calculead output
+
+# y3 generated
     y3 = [] 
     k = 0
     for k in y:
         y3.append(0.0)    
-#------ Summe als norm---    
+
+#------ y3 = Acummulated y []---    
     k = 0
     summe = 0
     for i in y:
@@ -476,11 +510,11 @@ def ta_norm (y,y1):
         k = k+1
     k = 0
     print ('summe=', summe)
-#-----------------
-    gfg = np.matrix(y3) 
-    geeks = gfg.max() 
-    print('max=', geeks)
-    summe = geeks
+#------- Maximal search --------
+    y3np = np.matrix(y3) 
+    y3max = y3np.max() 
+    print('max=', y3max)
+    summe = y3max
 
     ywert = 0.0
     for i in y:
