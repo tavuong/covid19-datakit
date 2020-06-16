@@ -1,6 +1,3 @@
-# LIB for COVID SIMULATION
-# VUONG MODEL
-#
 import sys, getopt
 import matplotlib.pyplot as plt
 import matplotlib.dates
@@ -11,6 +8,12 @@ from lib.tavuong_visual import *
 from lib.tavuong_model import *
 from lib.tavuong_readfile import *
 from lib.user_visual import *
+# LIB for COVID SIMULATION
+# VUONG MODEL - VUONG SIMULATOR
+#  Author: Dr. The Anh Vuong
+# (c) 2020 by Dr.-The Anh Vuong
+# Licence: MIT , Patent right is reserved
+# ------------------------------------------
     
 def vuong_covid_Model (ncasesfile,deathsfile,country_in, gesund,simu_mode,tau,recP,sw7):
 # Data Reading 
@@ -62,6 +65,11 @@ def vuong_covid_Model (ncasesfile,deathsfile,country_in, gesund,simu_mode,tau,re
     
     return()
 def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
+# VUONG model: Covid-data Analysis 
+#  Author: Dr. The Anh Vuong
+# (c) 2020 by Dr.-The Anh Vuong
+# Licence: MIT , Patent right is reserved
+#--------------------------------------------------
 # ----Actualcase ----------------------------------
 #   x [] datum
 #   y [] case Data 
@@ -314,14 +322,15 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 
 #-----------------------------------------------------
 def cal_vuomod(yr,y, faktor, Tau, gesund) :
-# VUONG model: Calculation of Infection from Daily New Cases
-# 
-#   faktor is fix R-factor is dummy here
-#   Tau is incubation period. Tau = 0 : direct to nc data without estimation
-#   gesund is fix recovery rate is dummy here
-# Author: Dr. The Anh Vuong
+# VUONG model: Calculation of recovery cases from daily deaths
+#  Author: Dr. The Anh Vuong
 # (c) 2020 by Dr.-The Anh Vuong
 # Licence: MIT , Patent right is reserved
+#--------------------------------------------------
+#  faktor is fix R-factor is dummy here
+#  Tau is incubation period. Tau = 0 : direct to nc data without estimation
+#  gesund is fix recovery rate is dummy here
+#--------------------------------------------------------------
 
 
 #   r-Factor File generator
@@ -368,8 +377,14 @@ def cal_vuomod(yr,y, faktor, Tau, gesund) :
     return rfl
 # -----------------------------------------------------------
 def ta_recovery(yr,y, yd, faktor, recP, gesund) :
-# recovery function / gesund funktion / Vuong Model
-# Recovery is not Reproduction function
+# VUONG model: Calculation of recovery cases from daily deaths
+#  Author: Dr. The Anh Vuong
+# (c) 2020 by Dr.-The Anh Vuong
+# Licence: MIT , Patent right is reserved
+#--------------------------------------------------
+#  faktor is fix R-factor is dummy here
+#  Tau is incubation period. Tau = 0 : direct to nc data without estimation
+#  gesund is fix recovery rate is dummy here
 # yr : Out put
 # y : inf cases
 # yd: deaths cases
@@ -402,6 +417,10 @@ def ta_recovery(yr,y, yd, faktor, recP, gesund) :
     return
 
 def ta_active_Infection(r,x,y):
+# VUONG model: Calculation of active cases 
+#  Author: Dr. The Anh Vuong
+# (c) 2020 by Dr.-The Anh Vuong
+# Licence: MIT , Patent right is reserved
 # r = rest Infection
 # x = infection cases
 # y = recovered cases
