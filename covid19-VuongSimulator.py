@@ -13,7 +13,13 @@ from lib.tavuong_simulator import *
 from lib.user_visual import *
 
 def main(argv):
-# --------------------------------------
+# VUONG SIMULATION
+# ---LIB of system 
+# ---VUONG ALGORITHM
+#  Author: Dr. The Anh Vuong
+# (c) 2020 by Dr.-The Anh Vuong
+# Licence: MIT
+# ------------------------------------------
 # ARGUMENT Processing
     inputfile = ''
     outputfile = ''
@@ -58,7 +64,7 @@ def main(argv):
             simu_mode = arg
 
 # input control
-    print (argv)
+#    print (argv)
 
 #    if argv[0] != "": print (argv)
 # --------------------------------------
@@ -90,7 +96,10 @@ def main(argv):
     namecountry =""
     namecountry = country_in
     if namecountry == "": namecountry = input("VMODEL > country? ")
-    print ('Country' , namecountry)
+#    print ('Country' , namecountry)
+    print ('Covid19-VUONG SIMULATOR')
+    print (argv)
+
 
 # DIALOG
 # Mode select
@@ -199,16 +208,45 @@ def main(argv):
                 switch7 = int(simu_mode) - 70
                 simu_mode = '7'
 
-#           listn = ['Germany', 'Italy', 'France', 'Sweden', 'Belgium', 'United Kingdom', 'Russia']
-            listn = []
-            listn = tavuong_country_name('./data/vmodel_testlist.csv')
-            print (listn)
-            for ncc in listn:
-                namecountry = ncc
-                print ('VMODEL > ', ncc, namecountry) 
-                vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in),int(switch7))
+#          listn = ['Germany', 'Italy', 'France', 'Sweden', 'Belgium', 'United Kingdom', 'Russia']
+                listn = []
+                listn = tavuong_country_name('./data/vmodel_testlist.csv')
+                print (listn)
+                for ncc in listn:
+                    namecountry = ncc
+#                    print ('VMODEL > ', ncc, namecountry) 
+                    vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in),int(switch7))
             
-            namecountry = "Multi"
+                namecountry = "Multi countries - IncuP=" + tau_in + ' recP='+ recP_in
+
+#-------command line for mode 8
+
+            if (int(simu_mode) > 80) and (int(simu_mode) < 89):
+                switch7 = int(simu_mode) - 80
+                simu_mode = '8'
+                listTau = ['0', '2', '5', '7', '10']
+#            listn = []
+#            listn = tavuong_country_name('./data/vmodel_testlist.csv')
+                print (listTau)
+                for ncc in listTau:
+                    tau_in = ncc
+#                    print ('VMODEL > ', ncc, tau_in)
+                    vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in),int(switch7))
+                namecountry = "Variable IncuP - recP="+ recP_in
+#-------command line for mode 9
+
+            if (int(simu_mode) > 90) and (int(simu_mode) < 99):
+                switch7 = int(simu_mode) - 90
+                simu_mode = '9'
+                listTau = ['14', '21', '28']
+#            listn = []
+#            listn = tavuong_country_name('./data/vmodel_testlist.csv')
+                print (listTau)
+                for ncc in listTau:
+                    recP_in = ncc
+#                    print ('VMODEL > ', ncc, recP_in)
+                    vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in),int(switch7))
+                namecountry = "Variable RecP -IncuP=" + tau_in
 
 # show
 #    picstore = 0

@@ -244,21 +244,23 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
         summe_t = tavuong_plot_summe(x,y1,nd,summe_text,'')
         plt.bar(x,y1, label='')
 
-#   ------- control = 7 MULTI COUNTRIES   ------------
-#   ------- control = 71-76   ------------
+#   ------- control = 7 MULTI RUNs   ------------
+#   ------- control = 71-76 for Country  --------
+#   ------- control = 81-86 for Incubation Periods  --------
+#   ------- control = 91-76 for Recovery Period  --------
 
-# MOde 7 : 11.06.2020  --------------------------------------------------------------   
-    if (control==7):
+# MOde 7 : 11.06.2020 -16-06-2020  --------------------------------------------------------------   
+    if ((control==7) or (control==8)or (control==9)):
 
 # 71. new daily cases
         if (sw7 == 1):
-            summe_text ='Country ='+ namecountry + '/ confirmed Cases='
+            summe_text ='['+ namecountry + '] confirmed Cases='
             plt.plot(x,nc, label=summe_text)
             return
 
 # 72. Summe  cases
         if (sw7 == 2):
-            summe_text ='Country ='+ namecountry + '/ confirmed Cases='
+            summe_text ='['+ namecountry + '] confirmed Cases='
             summe_t = tavuong_plot_summe(x,y1,nc, summe_text,"")
             print ('Summe cases =', summe_t)    
             return
@@ -270,7 +272,13 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             cal_yg(y2,nc,1, recP, gesund)
             ta_active_Infection(y,y1,y2)
             ta_recovery_copy(y3,y)
-            summe_text ='Country ='+ namecountry + '/ f-Active='
+            if (control==7):
+                summe_text ='['+ namecountry + '] f-Active='
+            if (control==8):
+                summe_text ='['+ namecountry + ' IP='+ str(tau)+ '] f-Active='
+            if (control==9):
+                summe_text ='['+ namecountry + ' RecP='+ str(recP)+ '] f-Active='
+#            summe_text ='Country ='+ namecountry + '/ f-Active='
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
             return        
 # 74. unified active Case
@@ -281,7 +289,14 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             cal_yg(y2,nc,1, recP, gesund)
             ta_active_Infection(y,y1,y2)
             y3 = ta_norm (y,nc)
-            summe_text ='Country ='+ namecountry + '/ f-Active (%)='
+            if (control==7):
+                summe_text ='['+ namecountry + '] f-Active (%)='
+            if (control==8):
+                summe_text ='['+ namecountry + ' IP='+ str(tau)+ '] f-Active (%)='
+            if (control==9):
+                summe_text ='['+ namecountry + ' RecP='+ str(recP)+ '] f-Active (%)='
+
+#            summe_text ='Country ='+ namecountry + '/ f-Active (%)='
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
             return        
 # 75. VUONG-ALorithm : Active Cases
@@ -292,7 +307,14 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             ta_recovery(y2,y1,nd, 1, recP, gesund)
             ta_active_Infection(y,y1,y2)
             ta_recovery_copy(y3,y)
-            summe_text ='Country ='+ namecountry + '/ V-Active='
+            if (control==7):
+                summe_text ='['+ namecountry + '] V-Active='
+            if (control==8):
+                summe_text ='['+ namecountry + ' IP='+ str(tau)+ '] V-Active='
+            if (control==9):
+                summe_text ='['+ namecountry + ' RecP='+ str(recP)+ '] V-Active='
+
+#            summe_text ='Country ='+ namecountry + '/ V-Active='
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
             return
 
@@ -304,13 +326,20 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             ta_recovery(y2,y1,nd, 1, recP, gesund)
             ta_active_Infection(y,y1,y2)
             y3 = ta_norm (y,nc)
-            summe_text ='Country ='+ namecountry + '/ V-Active(%)='
+            if (control==7):
+                summe_text ='['+ namecountry + '] V-Active (%)='
+            if (control==8):
+                summe_text ='['+ namecountry + ' IP='+ str(tau)+ '] V-Active (%)='
+            if (control==9):
+                summe_text ='['+ namecountry + ' RecP='+ str(recP)+ '] V-Active (%)='
+
+#            summe_text ='Country ='+ namecountry + '/ V-Active(%)='
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
 #        plt.plot(x,y3, label=summe_text)
             return
 
 # MOde 8: 11.06.2020 multy country ##########################   
-    if (control==8):
+    if (control==18):
 # ----VUONG-ALorithm Prediction
         cal_vuomod(y1,nc,1,tau,0.)
         ta_recovery(y2,y1,nd, 1, recP, gesund)
@@ -322,7 +351,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 # MOde 9: 12.06.2020 multy country Normierte ######################
 # by Tau = 0 : use nc and recovery (nc , fix gesund)
 # by Tau != 0 : use Vmodel with nc (Tau) and recovery (nd, recP)   
-    if (control==9):
+    if (control==19):
         if (tau == 0):
 # Gesund after nc
             ta_recovery_copy(y1,nc)
