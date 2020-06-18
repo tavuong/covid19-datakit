@@ -92,10 +92,11 @@ def main(argv):
 
 #    fig, ax = plt.subplots()
     sname = ncasesfile
-
-    namecountry =""
-    namecountry = country_in
-    if namecountry == "": namecountry = input("VMODEL > country? ")
+# --------- mono country
+#    namecountry =""
+#    namecountry = country_in
+#    if namecountry == "": namecountry = input("VMODEL > country? ")
+#-------------------------------------
 #    print ('Country' , namecountry)
     print ('Covid19-VUONG SIMULATOR')
     print (argv)
@@ -103,10 +104,10 @@ def main(argv):
 
 # DIALOG
 # Mode select
-# set deirect to VUONG MODEL ta
+# use covid19 -datakit for development
+# set direct to VUONG MODEL ta
     mode =""
-    mode = mode_in
-    
+    mode = mode_in    
     mode ="ta"
 
     if mode == "": 
@@ -120,6 +121,7 @@ def main(argv):
         print("| ta : VuongModell                       |")
         mode  = input('KIT  > What is your calculate-model? ')
 #   print ('KIT > VuongModell' + mode)
+
 # RECOVERED SECLECT
     gesund = 0.0
     if ((mode == "ac") or mode == "sr"or mode == "ta"):
@@ -171,6 +173,7 @@ def main(argv):
         sread = ta_para_read('VMODEL > VuongSimualtion mode ? ',simu_mode, 6)
         simu_mode = sread
         print ('VuongSimualtion mode' , simu_mode)
+    
 
 #       sread = ta_para_read('VMODEL > Simulation Stufe ? ',gesund, '0.90')
 #       gesund = float(str(sread))
@@ -190,6 +193,10 @@ def main(argv):
 
 # One  Country - Mode 1-6
         if (int(simu_mode) <= 6):
+            namecountry =""
+            namecountry = country_in
+            if namecountry == "": namecountry = input("VMODEL > country? ")
+
             vuong_covid_Model (ncasesfile,deathsfile,namecountry, gesund, int(simu_mode), int(tau_in),int(recP_in),5)
 
 # MUlti Country - Mode 7-9
@@ -222,6 +229,9 @@ def main(argv):
 #-------command line for mode 8
 
             if (int(simu_mode) > 80) and (int(simu_mode) < 89):
+                namecountry =""
+                namecountry = country_in
+                if namecountry == "": namecountry = input("VMODEL > country? ")
                 switch7 = int(simu_mode) - 80
                 simu_mode = '8'
                 listTau = ['0', '2', '5', '7', '10']
@@ -236,6 +246,10 @@ def main(argv):
 #-------command line for mode 9
 
             if (int(simu_mode) > 90) and (int(simu_mode) < 99):
+                namecountry =""
+                namecountry = country_in
+                if namecountry == "": namecountry = input("VMODEL > country? ")
+
                 switch7 = int(simu_mode) - 90
                 simu_mode = '9'
                 listTau = ['14', '21', '28']

@@ -104,7 +104,12 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 #        summe_text ='Incub. ='+ str(tau) + '/ Est. inf.='
 #        plt.plot(x,y1, label=summe_text)
 
-        y2 = cal_vuomod(y1,nc,1,tau,0.)
+        y2 = ta_norm (nc)
+        summe_text ='Norm confirmed ' 
+        plt.plot(x,y2, label=summe_text)
+
+        y = cal_vuomod(y1,nc,1,tau,0.)
+        y2 = ta_norm (y)
         summe_text ='R-Factor / Incub.P='+ str(tau) 
         plt.plot(x,y2, label=summe_text)
         
@@ -215,7 +220,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 # MODE 6 ############## PUBLICATION TSD _ MEDIUM ########################
     if (control==6):
 # 1. new daily cases
-        summe_text ="confirmed Inf.= "
+        summe_text ='confirmed Cases='
         summe_t = tavuong_plot_summe(x,y1,nc, summe_text,'')
 #        print ('Summe case =', summe_t)    
 
@@ -254,8 +259,14 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 
 # 71. new daily cases
         if (sw7 == 1):
+#  --------- absolute compare
+#            summe_text ='['+ namecountry + '] confirmed Cases='
+#            plt.plot(x,nc, label=summe_text)
+#  --------- prozentual compare
+            y2 = ta_norm (nc)
             summe_text ='['+ namecountry + '] confirmed Cases='
-            plt.plot(x,nc, label=summe_text)
+            plt.plot(x,y2, label=summe_text)
+
             return
 
 # 72. Summe  cases
@@ -288,7 +299,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             ta_recovery_copy(y1,nc)
             cal_yg(y2,nc,1, recP, gesund)
             ta_active_Infection(y,y1,y2)
-            y3 = ta_norm (y,nc)
+            y3 = ta_vuong_norm_s (y)
             if (control==7):
                 summe_text ='['+ namecountry + '] f-Active (%)='
             if (control==8):
@@ -316,6 +327,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 
 #            summe_text ='Country ='+ namecountry + '/ V-Active='
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
+            plt.bar(x,y2, label='')
             return
 
 # 76. VUONG-ALorithm : unified Active Cases
@@ -325,7 +337,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
             cal_vuomod(y1,nc,1,tau,0.)
             ta_recovery(y2,y1,nd, 1, recP, gesund)
             ta_active_Infection(y,y1,y2)
-            y3 = ta_norm (y,nc)
+            y3 = ta_vuong_norm_s (y)
             if (control==7):
                 summe_text ='['+ namecountry + '] V-Active (%)='
             if (control==8):
@@ -335,7 +347,8 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 
 #            summe_text ='Country ='+ namecountry + '/ V-Active(%)='
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
-#        plt.plot(x,y3, label=summe_text)
+#           plt.bar(x,y2, label='')
+#           plt.plot(x,y3, label=summe_text)
             return
 
 # MOde 8: 11.06.2020 multy country ##########################   
@@ -364,8 +377,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
         
 # ---- VUONG-ALorithm extimate active cases
         ta_active_Infection(y,y1,y2)
-#        y3 = ta_norm (y,y1)
-        y3 = ta_norm (y,nc)
+        y3 = ta_vuong_norm_s (y)
         summe_text ='Country ='+ namecountry + '/ V-Active(%)='
         summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
 #        plt.plot(x,y3, label=summe_text)
@@ -513,7 +525,7 @@ def ta_para_read(text_req, read_in, default):
             return default
     return read_in
 
-def ta_norm (y,y1):
+def ta_norm (y):
 # VUONG SIMULATOR 
 # ---- VUONG-Aligorithm: unified calculation 
 #  Author: Dr. The Anh Vuong
@@ -521,7 +533,6 @@ def ta_norm (y,y1):
 # Licence: MIT , Patent right is reserved
 #--------------------------------------------------
 # y: input
-# y1 : Norm
 # y3 = ta_norm : calculead output
 
 # y3 generated
@@ -532,25 +543,48 @@ def ta_norm (y,y1):
 
 #------ y3 = Acummulated y []---    
     k = 0
-    summe = 0
+    summe = 0         
+    y3np = np.matrix(y) 
+    y3max = y3np.max() 
+    print('max=', y3max)
+    for i in y:
+        y3[k] = 100*y[k]/y3max
+        k = k+1
+    return y3
+     
+def ta_vuong_norm_s (y):
+# Covid19 _VuongSimulator 
+# ---- VUONG-Aligorithm: Normalyse Summe function 
+#  Author: Dr. The Anh Vuong
+# (c) 2020 by Dr.-The Anh Vuong
+# Licence: MIT , Patent right is reserved
+#--------------------------------------------------
+# y: input
+# y3 = ta_norm : calculead output
+
+# y3 generated
+    y3 = [] 
+    k = 0
+    for k in y:
+        y3.append(0.0)    
+
+#------ y3 = Acummulated y []---    
+    k = 0
+    summe = 0         
     for i in y:
         summe = y[k] + summe
         y3[k] = summe
         k = k+1
-    k = 0
-    print ('summe=', summe)
 #------- Maximal search --------
     y3np = np.matrix(y3) 
     y3max = y3np.max() 
-    print('max=', y3max)
     summe = y3max
 
+    k = 0
     ywert = 0.0
     for i in y:
         ywert = y [k]      
         y3[k] = 100.0*ywert/summe
-#        y3[k] = ywert/summe
 
- #       print ('VMODEL > ', y3[k], y[k], summe)
         k = k+1    
     return y3 
