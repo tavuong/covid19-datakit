@@ -38,9 +38,9 @@ $ cd ~/covid19-datakit/
 - You could find [here Data Sources](https://ourworldindata.org/coronavirus-source-data) or from other public source 
 
 ## covid19-datakit.py start & dialog
-[Codvid19-VuongSimulator](https://github.com/tavuong/covid19-datakit/blob/master/README_DATAKIT.md) DATAKIT
+[codvid19-datakit](https://github.com/tavuong/covid19-datakit/blob/master/README_DATAKIT.md) DATAKIT - README
 ## covid19-VuongSimulator.py
-[Codvid19-VuongSimulator](https://github.com/tavuong/covid19-datakit/blob/master/README_VuongSimulator.md) VuongSimulator README -file
+[codvid19-VuongSimulator](https://github.com/tavuong/covid19-datakit/blob/master/README_VuongSimulator.md) VuongSimulator README -file
 
 
 Project : covid19-datakit
