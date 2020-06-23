@@ -327,7 +327,7 @@ def ta_covid19_anlysis(x,nc,nd,y1,y2,gesund,namecountry,control,tau,recP,sw7):
 
 #            summe_text ='Country ='+ namecountry + '/ V-Active='
             summe_t = tavuong_plot_summe(x,y2,y3, summe_text, "")
-            plt.bar(x,y2, label='')
+#            plt.bar(x,y2, label='')
             return
 
 # 76. VUONG-ALorithm : unified Active Cases
