@@ -28,12 +28,12 @@ Development kit for users to quickly and easily develop his Visualisation or Ana
 
 
 ## Features:
--covid19-datakit.py: dashboard for Development-Kit
--covid19-VuongSimulator: Analysys- Prediction -Normalizing
--Input: data source and Parameter (as tests, source from the Internet)
--Modeling: user_model.py, tavuong_model.py (default)
--Visualizing: user_visual.py tavuong_visual.py (default)
--Vuong Simulation: tavuong_simulation.py 
+- covid19-datakit.py: dashboard for Development-Kit
+- covid19-VuongSimulator: Analysys- Prediction -Normalizing
+- Input: data source and Parameter (as tests, source from the Internet)
+- Modeling: user_model.py, tavuong_model.py (default)
+- Visualizing: user_visual.py tavuong_visual.py (default)
+- Vuong Simulation: tavuong_simulation.py 
 
 # Install - Data prepare - Start 
 ## Install
