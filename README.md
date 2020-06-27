@@ -1,4 +1,6 @@
 # covid19-datakit
+Development kit for users to quickly and easily develop his Visualisation or Analysis without default template and lib-programs and examples.
+
 [![N|](https://vuongblog.files.wordpress.com/2020/05/git_pt_vuong60.png)](https://vuongblog.wordpress.com)
 
 
@@ -9,20 +11,29 @@
 
 [towards datas cience](https://towardsdatascience.com/comparison-of-covid-19-data-from-different-locations-normalization-showcase-programming-93e7c222c56d) Comparison of COVID-19-data from different locations: Normalization — Showcase — Programming, 23.06.2020
 
-[Codvid19- Datakit WIKI](https://github.com/tavuong/covid19-datakit/wiki) Info for using
 
 [![N|](https://github.com/tavuong/covid19-datakit/blob/master/test.png)] Data analysis example for World Data 
+
+## WIKI
+[Codvid19- Datakit WIKI](https://github.com/tavuong/covid19-datakit/wiki) Info for using
+
 ## Description:
 - Development kit for Covid-Data Analysis and Visualization.
 - User could develop his own model in user_model.py
 - User could develop his own presentation in user_visual.py 
-- All analysis methods in tavuong_model.py are models for reasearch, could giving non-real statements.
+- Users could use Analysis methods in tavuong_model.py (models for reasearch).
+- user could use Visual Templates in tavuong_visual.py for quickly presentaion his data
+- Dr. T.A.Vuong Research for Analysis- Predicttion- Normalizing in tavuong_simulator.py 
+
+
 
 ## Features:
-- Program: covid19-datakit.py : dashboard
-- Input: data source and Parameter
-- Modeling:     ./lib/user_model.py ./lib/tavuong_model.py (default)
-- Visualizing : .lib/user_visual.py ./lib/tavuong_model.py (default)
+-covid19-datakit.py: dashboard for Development-Kit
+-covid19-VuongSimulator: Analysys- Prediction -Normalizing
+-Input: data source and Parameter (as tests, source from the Internet)
+-Modeling: user_model.py, tavuong_model.py (default)
+-Visualizing: user_visual.py tavuong_visual.py (default)
+-Vuong Simulation: tavuong_simulation.py 
 
 # Install - Data prepare - Start 
 ## Install
