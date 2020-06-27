@@ -1,5 +1,5 @@
 # covid19-datakit
-Development kit for users to quickly and easily develop his Visualisation or Analysis without default template and lib-programs and examples.
+Development kit for users to quickly and easily develop his Visualisation or Analysis with default template and lib-programs and examples.
 
 [![N|](https://vuongblog.files.wordpress.com/2020/05/git_pt_vuong60.png)](https://vuongblog.wordpress.com)
 
