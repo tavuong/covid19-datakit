@@ -16,6 +16,9 @@ Development kit for users to quickly and easily develop his Visualisation or Ana
 
 $ python .\covid19-VuongSimulator.py -c “World” -o test.png -m ta -n .\data\new_cases.csv -d .\data\new_deaths.csv -g 0.98 -r 14 -t 7 -s 6
 
+[![N|](https://github.com/tavuong/covid19-datakit/blob/master/test2.png)] Comparision Data showcase Test-example with Vuong-Prediction  
+
+$ python .\covid19-VuongSimulator.py -c "World" -o test2.png -m ta -n .\data\new_cases.csv -d .\data\new_deaths.csv -g 0.98 -r 14 -t 7 -s 76
 ## WIKI
 [Codvid19- Datakit WIKI](https://github.com/tavuong/covid19-datakit/wiki) Info for using
 
