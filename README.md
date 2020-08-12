@@ -14,6 +14,8 @@ Development kit for users to quickly and easily develop his Visualisation or Ana
 
 [![N|](https://github.com/tavuong/covid19-datakit/blob/master/test.png)] Data analysis example for World Data 
 
+$ python .\covid19-VuongSimulator.py -c “World” -o test.png -m ta -n .\data\new_cases.csv -d .\data\new_deaths.csv -g 0.98 -r 14 -t 7 -s 6
+
 ## WIKI
 [Codvid19- Datakit WIKI](https://github.com/tavuong/covid19-datakit/wiki) Info for using
 
