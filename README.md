@@ -12,11 +12,11 @@ Development kit for users to quickly and easily develop his Visualisation or Ana
 [towards datas cience](https://towardsdatascience.com/comparison-of-covid-19-data-from-different-locations-normalization-showcase-programming-93e7c222c56d) Comparison of COVID-19-data from different locations: Normalization — Showcase — Programming, 23.06.2020
 
 
-[![N|](https://github.com/tavuong/covid19-datakit/blob/master/test.png)] Data analysis example for World Data 
+[![N|](https://github.com/tavuong/covid19-datakit/blob/master/test.png)] Data analysis example for GERMANY Data (OWD Data : 2020-10-21)
 
-$ python .\covid19-VuongSimulator.py -c “World” -o test.png -m ta -n .\data\new_cases.csv -d .\data\new_deaths.csv -g 0.98 -r 14 -t 7 -s 6
+$ python .\covid19-VuongSimulator.py -c “Germany” -o test.png -m ta -n .\data\new_cases.csv -d .\data\new_deaths.csv -g 0.98 -r 14 -t 7 -s 6
 
-[![N|](https://github.com/tavuong/covid19-datakit/blob/master/test2.png)] Comparision Data showcase Test-example with Vuong-Prediction  
+[![N|](https://github.com/tavuong/covid19-datakit/blob/master/test2.png)] Comparision Data showcase Test-example with Vuong-Prediction (OWD Data : 2020-10-21) 
 
 $ python .\covid19-VuongSimulator.py -c "World" -o test2.png -m ta -n .\data\new_cases.csv -d .\data\new_deaths.csv -g 0.98 -r 14 -t 7 -s 76
 ## WIKI

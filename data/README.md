@@ -13,4 +13,5 @@ Max Roser, Hannah Ritchie, Esteban Ortiz-Ospina and Joe Hasell (2020) - "Coronav
 # VuongSimulator Control Data
 - vmodel_testlist.csv
 
+Updated: 2020-10-21
 License: MIT
